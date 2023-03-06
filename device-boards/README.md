@@ -6,7 +6,7 @@ The main requirement for these embedded board/platform projects is to create a b
 
 When you are starting your project, your commands, configuration, and states should be defined in `$PROJECT_ROOT/device-io/protobufs/protofiles-in` ([see details here](../device-io//protobufs/README.md)). Once that is done and you've compiled your Protocol Buffer definitions, the `struct` and other type definitions will be available to our Arduino/PlatformIO projects so we can start handling their implementations right away.
 
-Go to the embedded device project in `$PROJECT_ROOT/devices` and open it up with an appropriate editor. At this point, you can write your own device code, ideally focusing on handling commands and returning responses, not in writing any communication boilerplate code!
+Go to the embedded device project in `$PROJECT_ROOT/device-boards` and open it up with an appropriate editor. At this point, you can write your own device code, ideally focusing on handling commands and returning responses, not in writing any communication boilerplate code!
 
 ## Rationale
 

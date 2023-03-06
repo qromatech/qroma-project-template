@@ -2,7 +2,7 @@
 
 ## What is _qroma_?
 
-Qroma is for developing embedded systems (and its software) so developers focus on convention over configuration (popularized by Ruby on Rails a long time ago) for user and device interaction. Embedded devices have state and can respond to user intentions. Users have multiple platforms and connectivity options that could potentially connect to those embedded devices. 
+Qroma is a Device Project System (DPS) for documenting and developing embedded systems (both software and hardware aspects) so developers focus on convention over configuration (popularized by Ruby on Rails a long time ago) for user and device interaction. Embedded devices have state and can respond to user intentions. Users have multiple platforms and connectivity options that could potentially connect to those embedded devices. 
 
 The less the embedded device developer has to worry about those distinctions early in the development process, the better. How those devices receive intentions and share states should be a function of what's in the messages themselves (size permitting, of course).
 
@@ -53,6 +53,6 @@ As a project creator, a statically generated project website that can compile, h
 Further documentation is available for these topics:
 * [Directory structure for projects](/DIRECTORY-LAYOUT.md)
 * [Defining project-level device commands](/device-io/protobufs/README.md)
-* [Setting up device projects and using embedded software development frameworks](/devices/README.md)
+* [Setting up device projects and using embedded software development frameworks](/device-boards/README.md)
 * [Documenting and hosting your Qroma project either on the Internet or on the device itself](/sites/README.md)
 * [Using your Qroma devices from a smartphone](/apps/README.md)

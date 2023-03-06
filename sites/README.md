@@ -12,7 +12,6 @@ As such, learning to write web apps is out of the scope of Qroma projects, but w
 
 ## Rationale
 
-
 There are two types of sites to consider for a Qroma project.
 * Published websites - These can host project information and provide a user interface for the devices (when plugged in to a PC or laptop). We recommend [Docusaurus](https://docusaurus.io/) because of its focus on documentation (which is important for a technical project), support for Markdown and Markdown with JSX (MD/MDX), and the ability to create/host your own react components, and flexibility. These sites can be published as static web apps and use USB/serial to bootstrap a plugged in embedded device as well as do full device control, configuration, and monitoring (depending on your project's settings).
 * Device-hosted websites - These are websites that the device itself can host so browsers on the same WiFi network can directly interact with it.
