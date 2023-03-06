@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+
+enum QromaComm_MessageType {
+  Qcmt_NotSet = 0;
+
+  Qcmt_QromaDeviceCommand = 1;
+  Qcmt_QromaDeviceStatusQuery = 2;
+  Qcmt_QromaDeviceConfigQuery = 3;
+  Qcmt_QromaDeviceManifestQuery = 4;
+  Qcmt_QromaDeviceBuildInfoQuery = 5;
+
+  Qcmt_QromaPointCommand = 11;
+  Qcmt_QromaPointStatusQuery = 12;
+  Qcmt_QromaPointConfigQuery = 13;
+  Qcmt_QromaPointManifestQuery = 14;
+}
+
+
+message QromaComm_Routed_Message {
+  QromaComm_MessageType followingMessageType = 1;
+  uint32 followingMessageSize = 2;
+  uint32 followingMessageId = 3;
+  string qromaPointInstanceId = 4;
+}
+
+
+message QromaComm_Routed_Message_Response {
+  QromaComm_MessageType responseToMessageType = 1;
+  uint32 responseMessageSize = 2;
+  // uint32 responseMessageId = 3;
+  string qromaPointInstanceId = 3;
+}
+
+
+message QromaComm_Query_Response {
+  uint32 responseMessageSize = 1;
+  uint32 responseMessageId = 2;
+}

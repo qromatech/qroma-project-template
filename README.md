@@ -8,6 +8,8 @@ The less the embedded device developer has to worry about those distinctions ear
 
 Qroma's ambitious goal is to make "Hello World" across devices and UX as frictionless as possible so that iteration and feedback can start happening across devices across the world in the first five minutes of your project. 
 
+Its opinionated approach is based on development experiences across a range of embedded and UX platforms and a desire to priotize development and prototyping speed so that external feedback can be validated or invalidated, synthesized, and integrated into the next iteration of the project, either through user reports or direct pull requests.
+
 
 ## What is a _qroma_ project?
 
@@ -49,5 +51,8 @@ As a project creator, a statically generated project website that can compile, h
 ## Deeper Dives
 
 Further documentation is available for these topics:
-* [Directory structure for projects](project-template-docs/project-layout.md)
-* 
+* [Directory structure for projects](/DIRECTORY-LAYOUT.md)
+* [Defining project-level device commands](/device-io/protobufs/README.md)
+* [Setting up device projects and using embedded software development frameworks](/devices/README.md)
+* [Documenting and hosting your Qroma project either on the Internet or on the device itself](/sites/README.md)
+* [Using your Qroma devices from a smartphone](/apps/README.md)

@@ -21,12 +21,16 @@ You will be defining your commands, responses, and settings here. Once they are 
 
 ### devices
 
-This is the directory for your embedded device applications with a directory name convention `dev-$BOARDNAME-$PROJECTNAME`. The outputs for embedded device applications will be compiled binaries and board metadata so they can be loaded onto their boards by assemblers.
+This is the directory for your embedded device applications with a directory name convention `dev-$BOARDNAME-$FRAMEWORK-$PROJECTNAME`. The outputs for embedded device applications will be compiled binaries and board metadata so they can be loaded onto their boards by assemblers.
 
 
 ### sites
 
-This is the directory for your web site(s) with a directory name convention `site-$PROJECTNAME`. Once we discovered WebSerial was a serious option for loading ESP32 binaries onto embedded devices and could be used for device IO via webpage, websites became a first class option since the tools for developing them are so pervasive, powerful, and easy to develop with. We start with a docusaurus site that includes placeholders for everything, but it can be tweaked/customized as desired.
+This is the directory for your web site(s) with a directory name convention `site-$PROJECTNAME-$DOMAINNAME`. 
+
+Once we discovered WebSerial was a serious option for loading ESP32 binaries onto embedded devices and could be used for device IO via webpage, websites became a first class option since the tools for developing them are so pervasive, powerful, and easy to develop with. We start with a docusaurus site that includes placeholders for everything, but it can be tweaked/customized as desired.
+
+Self hosting on WiFi devices is also an option that can be loaded/supported with the built-in Qroma filesystem.
 
 Options include:
 * User interface pages

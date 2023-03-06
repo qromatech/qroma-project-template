@@ -1,0 +1,2 @@
+QromaComm_Routed_Message.qromaPointInstanceId  max_size:9  fixed_length:true
+QromaComm_Routed_Message_Response.qromaPointInstanceId  max_size:9  fixed_length:true
