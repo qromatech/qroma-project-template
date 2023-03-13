@@ -6,8 +6,8 @@ You have an embedded device project idea and you are impatient to get it started
 
 
 ### Choose an embedded development platform
-Qroma projects have support for Arduino and Platform IO projects
-  * ESP32 boards are supported by default
+Qroma projects have support for Arduino and Platform IO projects. Available libraries and board support are important factors when it comes to deciding what frameworks to use, so we focus on supporting some simple development paths and getting the binary outputs.
+  * ESP32 boards are supported
   * Any board can be supported - the main requirement of the embedded platform is to build a binary to install and supply metadata about how to install
 
 Since there are lots of boards supporting wireless communication, Qroma projects focus on user interactions across multiple user platforms (while only implementing a single set of commands, though!)
