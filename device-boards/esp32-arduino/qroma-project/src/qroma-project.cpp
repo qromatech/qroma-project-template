@@ -1,4 +1,4 @@
-#include "hello-qroma.h"
+#include "qroma-project.h"
 
 void helloQromaSetup()
 {
