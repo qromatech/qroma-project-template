@@ -1,6 +1,6 @@
 #include <Arduino.h>
 
 
-void helloQromaSetup();
+void qromaProjectSetup();
 
-void helloQromaLoop();
+void qromaProjectLoop();
