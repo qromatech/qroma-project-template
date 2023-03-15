@@ -1,8 +1,6 @@
-cd device-io\protobufs
-CALL docker-protobuf-compile.bat
-cd "%~dp0"
 
-REM build embedded app
+REM build embedded app with PlatformIO
+
 
 REM move embedded app bin somewhere
 
@@ -10,3 +8,5 @@ REM compile site
 
 REM compile apps
 
+REM return to directory we started from
+cd "%~dp0"
