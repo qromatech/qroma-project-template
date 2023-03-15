@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-import "qroma/file-system-commands.proto";
-import "qroma/qroma-comm-routed-messages.proto";
-
-
-message HelloQroma {
-  string name = 1;
-}
