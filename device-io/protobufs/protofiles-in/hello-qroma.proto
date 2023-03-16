@@ -1,12 +1,19 @@
 syntax = "proto3";
 
 
+message QromaHeartbeat {
+  string heartbeatMessage = 1;
+  uint32 uptime = 2;
+}
+
+
 message HelloQroma {
   string name = 1;
 }
 
 message HelloQromaResponse {
   string response = 1;
+  uint32 callCount = 2;
 }
 
 

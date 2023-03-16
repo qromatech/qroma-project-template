@@ -5,7 +5,7 @@
   Copyright (c) 2021  Albert Boehmler 
 */
 
-#include "qroma-project.h"
+#REPLACE_WITH_PROJECT_REF_HEADER_INCLUDE
 
 void setup() {
   qromaProjectSetup();

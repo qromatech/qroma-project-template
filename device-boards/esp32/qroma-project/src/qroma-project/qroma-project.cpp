@@ -10,6 +10,7 @@ void qromaProjectSetup()
 
 void qromaProjectLoop()
 {
+  QromaHeartbeat * qhb = new QromaHeartbeat();
   delay(1000);
   Serial.print("Hello Qroma World!");
   Serial.println(counter);
