@@ -1,0 +1,16 @@
+[qroma.project]
+name = "#REPLACE_WITH_PROJECT_ID"
+version = "0.1.0"
+
+
+[qroma.project.dev_board]
+build_frameworks = [
+  "platformio",
+  "arduino",
+]
+
+
+[qroma.project.run.commands.dev_boards.platformio]
+build = "run"
+install = "run --target upload --environment esp32dev"
+monitor = ""
