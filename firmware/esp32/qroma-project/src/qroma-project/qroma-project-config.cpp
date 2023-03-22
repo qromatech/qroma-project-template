@@ -22,4 +22,6 @@ QromaBytesProcessor *qromaBytesProcessors[] = { &helloQromaPbProcessor, };
 void configQromaApp(QromaAppConfig * config) {
   config->serialIoConfig.qromaBytesProcessors = qromaBytesProcessors;
   config->serialIoConfig.qromaBytesProcessorsCount = sizeof(qromaBytesProcessors) / sizeof(QromaBytesProcessor*);
+
+  config->loggerConfig.logLevel = Qroma_LogLevel_LogLevel_Info;
 }

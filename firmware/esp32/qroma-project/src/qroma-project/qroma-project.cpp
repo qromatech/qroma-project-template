@@ -74,6 +74,7 @@ void qromaProjectLoop()
   Serial.print("TICK - ");
   // Serial.print("Hello Qroma World!");
   Serial.println(counter);
+  counter++;
   // Serial.println(MESSAGE_OUT);
   // Serial.println(_mostRead);
   // Serial.println(_lastReadCount);
