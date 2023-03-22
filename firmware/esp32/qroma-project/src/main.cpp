@@ -5,7 +5,7 @@
   Copyright (c) 2021  Albert Boehmler 
 */
 
-{{ dev_boards.include_statement('#include "{qroma_project.project_id}/qroma-project.h"') }}
+{{ firmware.include_statement('#include "{qroma_project.project_id}/qroma-project.h"') }}
 
 
 void setup() {

@@ -7,7 +7,7 @@ OK, we admit it, there are a daunting number of directories at the root here. Bu
 These directories exist to support those different methods and manage the complexity of keeping all these pieces organized.
 
 
-### qroma.yaml
+### qroma.toml
 
 This is where metadata for organizing the project information goes. Think of it like `package.json` (from the NodeJS/npm world) as a single point of configuration entry that ties all the pieces together.
 

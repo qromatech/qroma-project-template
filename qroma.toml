@@ -3,21 +3,21 @@ name = "{{ qroma_project.project_id }}"
 version = "0.1.0"
 
 
-[qroma.project.dev_board]
-build_frameworks = [
-  {%- for dev_board_platform in qroma_project.config.dev_board_platforms %}
+[qroma.project.firmware]
+platforms = [
+  {%- for dev_board_platform in qroma_project.firmware_platforms %}
   "{{ dev_board_platform.value }}",
   {%- endfor %}
 ]
 
 
-[qroma.project.run.commands.dev_boards.platformio]
+[qroma.project.run.commands.firmware.platformio]
 build = "run"
 install = "run --target upload --environment esp32dev"
 monitor = ""
 
 
-[qroma.project.stages.build.dev-boards]
+[qroma.project.stages.build.firmware]
 project_dirs = []
 
 
