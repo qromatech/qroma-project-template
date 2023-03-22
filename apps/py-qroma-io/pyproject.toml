@@ -7,8 +7,9 @@ authors = ["Albert Boehmler <ajboehmler@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-py-qroma = {path = "../../../../py-qroma", develop = true}
-
+protobuf = "3.20.3"
+#py-qroma = {path = "C:/Users/ajb/Projects/qromatech/py-qroma", develop = true}
+py-qroma = {git = "https://github.com/qromatech/py-qroma.git" }
 
 [build-system]
 requires = ["poetry-core"]

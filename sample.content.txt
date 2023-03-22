@@ -1,0 +1,8 @@
+
+SAMPLE CONTENT
+{{ qroma_project.project_id }}
+{{ dev_boards.include_statement('#include "src/{qroma_project.project_id}/qroma-project.h"') }}
+
+
+MORE MOAR MOHR
+2aaa

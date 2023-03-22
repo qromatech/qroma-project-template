@@ -1,3 +1,5 @@
 /device-io/protobufs/protofiles-out
 
 **/.idea
+
+**/__pycache__/

@@ -1,12 +1,13 @@
 [qroma.project]
-name = "#REPLACE_WITH_PROJECT_ID"
+name = "{{ qroma_project.project_id }}"
 version = "0.1.0"
 
 
 [qroma.project.dev_board]
 build_frameworks = [
-  "platformio",
-  "arduino",
+  {%- for dev_board_platform in qroma_project.config.dev_board_platforms %}
+  "{{ dev_board_platform.value }}",
+  {%- endfor %}
 ]
 
 
@@ -14,3 +15,28 @@ build_frameworks = [
 build = "run"
 install = "run --target upload --environment esp32dev"
 monitor = ""
+
+
+[qroma.project.stages.build.dev-boards]
+project_dirs = []
+
+
+
+[qroma.project.stages.build.protobuf.inputs]
+input_dirs = []
+
+
+[qroma.project.stages.build.protobuf.nanopb]
+output_dirs = []
+
+
+[qroma.project.stages.build.protobuf.python]
+output_dirs = []
+
+
+[qroma.project.stages.build.protobuf.typescript]
+output_dirs = []
+
+
+[qroma.project.stages.build.protobuf.dart]
+output_dirs = []
