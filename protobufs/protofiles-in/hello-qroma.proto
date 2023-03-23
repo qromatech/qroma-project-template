@@ -14,6 +14,7 @@ message HelloQroma {
 message HelloQromaResponse {
   string response = 1;
   uint32 callCount = 2;
+  uint32 nameLength = 3;
 }
 
 

@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "qroma-project-config.h"
+#include "qroma-config.h"
 
 
 void qromaProjectSetup();

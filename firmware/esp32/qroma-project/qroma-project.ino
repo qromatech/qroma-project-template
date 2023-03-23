@@ -1,4 +1,4 @@
-{{ firmware.include_statement('#include "src/{qroma_project.project_id}/qroma-project.h') }}
+{{ firmware.include_statement('#include "src/{qroma_project.project_id}/qroma-project.h"') }}
 
 
 void setup() {

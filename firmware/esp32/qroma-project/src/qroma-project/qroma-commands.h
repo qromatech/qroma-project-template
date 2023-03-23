@@ -4,11 +4,6 @@
 #include "qroma/qroma.h"
 #include "../qroma-proto/hello-qroma.pb.h"
 
-
-extern QromaAppConfig _myQromaAppConfig;
-extern QromaCommMemBuffer qcMemBuffer;
 extern PbCommandProcessor<HelloQroma, HelloQroma_fields> helloQromaPbProcessor;
-
-void configQromaApp(QromaAppConfig * config);
 
 #endif
