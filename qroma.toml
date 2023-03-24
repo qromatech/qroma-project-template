@@ -1,3 +1,5 @@
+# all directories in this file are located relative to the project root
+
 [qroma.project]
 name = "{{ qroma_project.project_id }}"
 version = "0.1.0"
@@ -16,27 +18,34 @@ build = "run"
 install = "run --target upload --environment esp32dev"
 monitor = ""
 
+[qroma.project.stages.sw.protobuf]
+root_dir = "protobufs"
+compilers = [
+  "nanopb",
+  "python",
+  "typescript",
+  "dart",
+]
+source_and_dest_dirs = [
+  ["protofiles-in", "protofiles-out"],
+]
 
-[qroma.project.stages.build.firmware]
+
+[qroma.project.stages.sw.protobuf.replication]
+nanopb.dirs = ["firmware/esp32/{{ qroma_project.project_id }}/src/qroma-proto", ]
+python.dirs = ["apps/py-qroma-io/qroma_proto", ]
+typescript.dirs = ["sites/site-www-{{ qroma_project.project_id }}/src/qroma-proto", ]
+dart.dirs = []
+
+
+[qroma.project.stages.sw.firmware]
 project_dirs = []
 
 
-
-[qroma.project.stages.build.protobuf.inputs]
-input_dirs = []
-
-
-[qroma.project.stages.build.protobuf.nanopb]
-output_dirs = []
+[qroma.project.stages.sw.apps]
+project_dirs = []
 
 
-[qroma.project.stages.build.protobuf.python]
-output_dirs = []
+[qroma.project.stages.sw.sites]
+project_dirs = []
 
-
-[qroma.project.stages.build.protobuf.typescript]
-output_dirs = []
-
-
-[qroma.project.stages.build.protobuf.dart]
-output_dirs = []
