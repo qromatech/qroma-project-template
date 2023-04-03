@@ -1,5 +1,5 @@
-#ifndef QROMA_PROJECT_CONFIG_H
-#define QROMA_PROJECT_CONFIG_H
+#ifndef QROMA_CONFIG_H
+#define QROMA_CONFIG_H
 
 #include "qroma/qroma.h"
 #include "../qroma-proto/hello-qroma.pb.h"
