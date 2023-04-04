@@ -2,7 +2,7 @@
 #define QROMA_PROJECT_H
 
 #include <Arduino.h>
-#include "qroma-config.h"
+#include "qroma-commands.h"
 
 
 void qromaProjectSetup();

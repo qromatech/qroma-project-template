@@ -1,22 +1,33 @@
 #include "qroma-project.h"
-#include "qroma-config.h"
+#include "qroma-commands.h"
+#include "qroma/qroma.h"
 
 
-int counter = 0;
+QromaSerialCommApp myQromaApp;
+
 
 void qromaProjectSetup()
 {
-  initQromaAppConfigWithDefaults(&_myQromaAppConfig, &qcMemBuffer, configQromaApp);
-  startupQroma(&_myQromaAppConfig);
+  registerPbCommandFunction<
+    HelloQroma, HelloQroma_fields,
+    HelloQromaResponse, HelloQromaResponse_fields
+  >(onHelloQroma, &myQromaApp);
 
-  delay(100);
+  configureQromaApp([](QromaAppConfig * config) {
+    config->loggerConfig.logLevel = Qroma_LogLevel_LogLevel_Error;
+  }, &myQromaApp);
+
+  configureSerialCommIo([](QromaCommSerialIoConfig * config) {
+    config->baudRate = 115200;
+    config->rxBufferSize = 1000;
+    config->txBufferSize = 1000;
+  }, &myQromaApp);
+
+  startupQroma(&myQromaApp);
 }
+
 
 void qromaProjectLoop()
 {
-  QromaHeartbeat * qhb = new QromaHeartbeat();
   delay(1000);
-  Serial.print("TICK - ");
-  Serial.println(counter);
-  counter++;
 }
