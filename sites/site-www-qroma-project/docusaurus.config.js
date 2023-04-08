@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'r',
-  tagline: 'A qroma.dev project',
+  title: '{{qroma_project.project_id}}',
+  tagline: 'Embedded device communication... simplified',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -64,14 +64,15 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'r',
-        logo: {
-          alt: 'r Logo',
-          src: 'img/logo.svg',
-        },
+        title: '{{qroma_project.project_id}}',
+//        logo: {
+//          alt: 'Project Logo',
+//          src: 'img/logo.svg',
+//        },
         items: [
-            {to: '/install-firmware', label: 'Install Firmware', position: 'left'},
+          {to: '/install-firmware', label: 'Install Firmware', position: 'left'},
           {to: '/monitor-device', label: 'Monitor Device', position: 'left'},
+          {to: '/qroma-comm-types', label: 'Comm Types', position: 'left'},
           {
             href: 'https://qroma.dev',
             label: 'qroma.dev',
@@ -122,7 +123,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright � ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
