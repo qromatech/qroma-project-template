@@ -9,7 +9,7 @@ QromaSerialCommApp myQromaApp;
 void qromaProjectSetup()
 {
   registerPbCommandFunction<
-    HelloQroma, HelloQroma_fields,
+    HelloQromaRequest, HelloQromaRequest_fields,
     HelloQromaResponse, HelloQromaResponse_fields
   >(onHelloQroma, &myQromaApp);
 
@@ -27,7 +27,25 @@ void qromaProjectSetup()
 }
 
 
-void qromaProjectLoop()
+// void qromaProjectLoop()
+// {
+//   delay(1000);
+// }
+
+int counter = 0;
+
+void qromaHeartbeatUpdateLoop()
 {
+  auto qhb = QromaHeartbeatUpdate();
+
+  char tickBuffer[10];
+  itoa(counter, tickBuffer, 10);
+  counter++;
+
+  strncat(qhb.heartbeatMessage, "Qroma tick: ", sizeof(QromaHeartbeatUpdate::heartbeatMessage) - 1);
+  strncat(qhb.heartbeatMessage, tickBuffer, sizeof(QromaHeartbeatUpdate::heartbeatMessage) - 1);
+  qhb.uptime = millis();
+
+  sendSerialPb64NewLineMessage<QromaHeartbeatUpdate, QromaHeartbeatUpdate_fields>(&qhb, &myQromaApp);
   delay(1000);
 }

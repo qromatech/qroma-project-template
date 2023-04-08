@@ -14,5 +14,6 @@ void setup() {
 
 
 void loop() {
-  qromaProjectLoop();
+//  qromaProjectLoop();
+    qromaHeartbeatUpdateLoop();
 }

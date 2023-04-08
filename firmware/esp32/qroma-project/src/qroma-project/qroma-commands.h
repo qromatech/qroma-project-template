@@ -3,6 +3,6 @@
 
 #include "../qroma-proto/hello-qroma.pb.h"
 
-void onHelloQroma(HelloQroma * message, HelloQromaResponse * hqr);
+void onHelloQroma(HelloQromaRequest * message, HelloQromaResponse * hqr);
 
 #endif

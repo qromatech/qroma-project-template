@@ -2,6 +2,7 @@
 
 [qroma.project]
 name = "{{ qroma_project.project_id }}"
+# use semantic versioning - see https://en.wikipedia.org/wiki/Software_versioning [Semantic versioning]
 version = "0.1.0"
 
 
@@ -26,9 +27,15 @@ compilers = [
   "typescript",
   "dart",
 ]
-source_and_dest_dirs = [
-  ["protofiles-in", "protofiles-out"],
-]
+
+[[qroma.project.stages.sw.protobuf.sources]]
+source_path = "protofiles-in"
+dest_path = "protofiles-out"
+site_path = "proto"
+
+#source_and_dest_and_publish_dirs = [
+#  ["protofiles-in", "protofiles-out", "proto"],
+#]
 
 
 [qroma.project.stages.sw.protobuf.replication]

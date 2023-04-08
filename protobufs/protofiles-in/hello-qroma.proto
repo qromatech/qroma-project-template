@@ -1,13 +1,13 @@
 syntax = "proto3";
 
 
-message QromaHeartbeat {
+message QromaHeartbeatUpdate {
   string heartbeatMessage = 1;
   uint32 uptime = 2;
 }
 
 
-message HelloQroma {
+message HelloQromaRequest {
   string name = 1;
 }
 
@@ -25,7 +25,7 @@ enum MathOperation {
   MathOp_Add_And_Subtract = 3;
 }
 
-message MathProblem {
+message MathRequest {
   uint32 a = 1;
   uint32 b = 2;
   MathOperation op = 3;
