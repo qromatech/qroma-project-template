@@ -42,7 +42,7 @@ void qromaHeartbeatUpdateLoop()
   itoa(counter, tickBuffer, 10);
   counter++;
 
-  strncat(qhb.heartbeatMessage, "Qroma tick: ", sizeof(QromaHeartbeatUpdate::heartbeatMessage) - 1);
+  strncat(qhb.heartbeatMessage, "Hello Qroma [{{ qroma_project.project_id }}]: ", sizeof(QromaHeartbeatUpdate::heartbeatMessage) - 1);
   strncat(qhb.heartbeatMessage, tickBuffer, sizeof(QromaHeartbeatUpdate::heartbeatMessage) - 1);
   qhb.uptime = millis();
 

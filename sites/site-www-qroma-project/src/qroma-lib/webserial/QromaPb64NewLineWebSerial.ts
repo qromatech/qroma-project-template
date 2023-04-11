@@ -26,8 +26,14 @@ export const useQromaPb64NewLineWebSerial = <T extends object>(
   }
 ) => {
 
+  console.log("useQromaPb64NewLineWebSerial");
   const qNavigator: any = window.navigator;
   const qSerial = qNavigator.serial;
+
+  console.log(qSerial);
+  if (!qSerial) {
+    return null;
+  }
 
   const _onConnect = () => {
     if (onConnect) {
