@@ -5,9 +5,9 @@ title: Monitor Device
 # Monitor Device
 
 import { HelloQromaRequest, MathRequest, QromaHeartbeatUpdate } from "../qroma-proto/hello-qroma";
-import { QromaUpdateMonitor2 } from "../qroma-app/QromaUpdateMonitor2";
+import { QromaUpdateMonitor } from "../qroma-app/QromaUpdateMonitor";
 
-<QromaUpdateMonitor2 
+<QromaUpdateMonitor
   messageType={QromaHeartbeatUpdate}
   />
   
