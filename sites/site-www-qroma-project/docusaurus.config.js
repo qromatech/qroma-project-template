@@ -32,6 +32,14 @@ const config = {
     locales: ['en'],
   },
 
+  scripts: [
+    // 'https://unpkg.com/esp-web-tools@9.2.1/dist/web/install-button.js?module'
+    {
+      src: '/esp-web-tools/install-button.js?module',
+      async: true,
+    },
+  ],
+
   presets: [
     [
       'classic',
