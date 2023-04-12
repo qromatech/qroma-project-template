@@ -14,7 +14,7 @@ export const QromaUpdateMonitor = <T extends object>(props: IQromaUpdateMonitorP
   const qromaPb64NewLineWebSerial = useQromaPb64NewLineWebSerial({
     messageType: props.messageType,
     onMessage(message: T) {
-      console.log("QromaUpdateMonitor2");
+      console.log("QromaUpdateMonitor");
       console.log(message);
       const messageStr = props.messageType.toJsonString(message);
       setSValue(messageStr);
