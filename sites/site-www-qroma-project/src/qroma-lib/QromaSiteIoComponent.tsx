@@ -1,6 +1,6 @@
-import React from "react"
-import { QromaSiteIo } from "./models/QromaSiteIo"
-import { MessageForm } from "./MessageForm"
+// import React from "react"
+// import { QromaSiteIo } from "./models/QromaSiteIo"
+// import { MessageForm } from "./MessageForm"
 
 
 export const QromaSiteIoComponent = ({qromaSiteIo} : {qromaSiteIo: QromaSiteIo}) => {
