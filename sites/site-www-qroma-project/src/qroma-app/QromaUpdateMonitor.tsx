@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { MessageType } from "@protobuf-ts/runtime";
 import { useQromaPb64NewLineWebSerial } from "../qroma-lib/webserial/QromaPb64NewLineWebSerial";
+import { MessageDataViewerComponent } from "../qroma-lib/proto-components/message-data-viewer/MessageDataViewerComponent";
 
 
 interface IQromaUpdateMonitorProps<T extends object> {
@@ -9,15 +10,17 @@ interface IQromaUpdateMonitorProps<T extends object> {
 
 export const QromaUpdateMonitor = <T extends object>(props: IQromaUpdateMonitorProps<T>) => {
   
-  const [sValue, setSValue] = useState("NOT SET");
+  // const [sValue, setSValue] = useState("NOT SET");
+  const [messageData, setMessageData] = useState(props.messageType.create());
 
   const qromaPb64NewLineWebSerial = useQromaPb64NewLineWebSerial({
     messageType: props.messageType,
     onMessage(message: T) {
       console.log("QromaUpdateMonitor");
       console.log(message);
-      const messageStr = props.messageType.toJsonString(message);
-      setSValue(messageStr);
+      // const messageStr = props.messageType.toJsonString(message);
+      // setSValue(messageStr);
+      setMessageData(message);
     },
   });
 
@@ -31,7 +34,7 @@ export const QromaUpdateMonitor = <T extends object>(props: IQromaUpdateMonitorP
   
   return (
     <>
-      Qroma monitor2x
+      Qroma monitor
       <button onClick={async () => {
         const port = await qromaPb64NewLineWebSerial.requestPort();
         console.log("PORT");
@@ -45,9 +48,13 @@ export const QromaUpdateMonitor = <T extends object>(props: IQromaUpdateMonitorP
       }}>
         Stop monitor
       </button>
-      <div>
+      {/* <div>
         {sValue}
-      </div>
+      </div> */}
+      <MessageDataViewerComponent
+        messageType={props.messageType}
+        messageData={messageData}
+        />
     </>
   )
 }

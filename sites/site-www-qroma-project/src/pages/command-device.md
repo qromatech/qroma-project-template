@@ -1,5 +1,5 @@
 ---
-title: Monitor Device
+title: Command Device
 ---
 
 # Command Device
