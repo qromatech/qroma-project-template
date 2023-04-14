@@ -33,10 +33,6 @@ source_path = "protofiles-in"
 dest_path = "protofiles-out"
 site_path = "proto"
 
-#source_and_dest_and_publish_dirs = [
-#  ["protofiles-in", "protofiles-out", "proto"],
-#]
-
 
 [qroma.project.stages.sw.protobuf.replication]
 nanopb.dirs = ["firmware/esp32/{{ qroma_project.project_id }}/src/qroma-proto", ]
