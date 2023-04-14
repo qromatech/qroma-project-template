@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { MessageType } from "@protobuf-ts/runtime";
-import { useQromaPb64NewLineWebSerial } from "../qroma-lib/webserial/QromaPb64NewLineWebSerial";
-import { QromaRequestForm } from "../qroma-lib/QromaRequestForm";
+import { QromaRequestForm } from "react-qroma";
+import { QromaCommMonitor } from 'react-qroma';
 
 
 interface IQromaCommandDeviceAppProps<T extends object, U extends object> {
@@ -57,6 +57,11 @@ export const QromaCommandDeviceApp = <T extends object, U extends object>(props:
 
       <QromaRequestForm
         requestMessageType={props.requestMessageType}
+        />
+
+
+      <QromaCommMonitor
+        messageType={props.responseMessageType}
         />
     </>
   )

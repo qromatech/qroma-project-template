@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { MessageType } from "@protobuf-ts/runtime";
-import { useQromaPb64NewLineWebSerial } from "../qroma-lib/webserial/QromaPb64NewLineWebSerial";
-import { MessageDataViewerComponent } from "../qroma-lib/proto-components/message-data-viewer/MessageDataViewerComponent";
+import { useQromaPb64NewLineWebSerial } from "react-qroma";
+import { MessageDataViewerComponent } from "react-qroma";
 
 
 interface IQromaUpdateMonitorProps<T extends object> {

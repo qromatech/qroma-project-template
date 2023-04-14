@@ -5,9 +5,10 @@ title: Monitor Device
 # Monitor Device
 
 import { QromaHeartbeatUpdate } from "../qroma-proto/hello-qroma";
-import { QromaUpdateMonitor } from "../qroma-app/QromaUpdateMonitor";
+import { QromaCommMonitor } from "react-qroma";
 
-<QromaUpdateMonitor
+
+<QromaCommMonitor
   messageType={QromaHeartbeatUpdate}
   />
   

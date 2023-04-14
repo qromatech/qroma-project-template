@@ -4,7 +4,6 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
-import { QromaApp} from '../qroma-app/QromaApp';
 
 import styles from './index.module.css';
 
@@ -43,7 +42,6 @@ export default function Home() {
       description="Description will go into a meta tag in <head />">
       <HomepageHeader />
       <main>
-        <QromaApp />
         {/* <HomepageFeatures /> */}
       </main>
     </Layout>
