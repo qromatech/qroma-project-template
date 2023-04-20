@@ -19,3 +19,7 @@ you are using below and click the button to install.
     />
 </div>
 
+<br/>
+<br/>
+<br/>
+<a href='https://esphome.github.io/esp-web-tools/'>ESP Web Tools</a> is used to install firmware via WebSerial. The installer button uses a <a href='/qroma/versions/0.1.0/firmware/manifest-firmware.json' target=''>manifest file </a> to know which files should be installed for its board.
