@@ -5,6 +5,7 @@ title: Install Device Firmware
 # Install Device Firmware to ESP32
 
 import { EspWebInstallButton } from 'react-qroma';
+import { getManifestPath } from '../qroma-app/getManifestPath';
 
 
 Installation of the firmware for {{ qroma_project.project_id }} is easy to do using a Chrome or Edge desktop
@@ -15,11 +16,11 @@ you are using below and click the button to install.
   <EspWebInstallButton
     label='Install on ESP32 Dev Board'
     instructionsText="Plug your ESP32 Dev board into your computer's USB port and click the button below to install the firmware onto your ESP32 device."
-    manifestPath='/qroma/versions/0.1.0/firmware/manifest-firmware.json'
+    manifestPath={getManifestPath()}
     />
 </div>
 
 <br/>
 <br/>
 <br/>
-<a href='https://esphome.github.io/esp-web-tools/'>ESP Web Tools</a> is used to install firmware via WebSerial. The installer button uses a <a href='/qroma/versions/0.1.0/firmware/manifest-firmware.json' target=''>manifest file </a> to know which files should be installed for its board.
+<a href='https://esphome.github.io/esp-web-tools/'>ESP Web Tools</a> is used to install firmware via WebSerial. The installer button uses a <a href={getManifestPath()} target=''>manifest file </a> to know which files should be installed for its board.
