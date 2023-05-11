@@ -1,9 +1,17 @@
 # all directories in this file are located relative to the project root
 
 [qroma.project]
+id = "{{ qroma_project.project_id }}"
 name = "{{ qroma_project.project_id }}"
 # use semantic versioning - see https://en.wikipedia.org/wiki/Software_versioning [Semantic versioning]
 version = "0.1.0"
+
+
+[qroma.project.dirs]
+pb_root = "{% raw %}{{ qroma_project_dir }}{% endraw %}/protobufs"
+firmware_root = "{% raw %}{{ qroma_project_dir }}{% endraw %}/firmware/esp32/{{ qroma_project.project_id }}"
+app_root = "{% raw %}{{ qroma_project_dir }}{% endraw %}/apps/py-qroma-io"
+site_root = "{% raw %}{{ qroma_project_dir }}{% endraw %}/sites/site-www-{{ qroma_project.project_id }}"
 
 
 [qroma.project.firmware]
@@ -20,7 +28,7 @@ install = "run --target upload --environment esp32dev"
 monitor = ""
 
 [qroma.project.stages.sw.protobuf]
-root_dir = "protobufs"
+root_dir = "{% raw %}{{ qroma.project_dirs.pb_root }}{% endraw %}/protobufs"
 compilers = [
   "nanopb",
   "python",
@@ -29,15 +37,14 @@ compilers = [
 ]
 
 [[qroma.project.stages.sw.protobuf.sources]]
-source_path = "protofiles-in"
-dest_path = "protofiles-out"
-site_path = "proto"
+source_path = "{% raw %}{{ qroma.project_dirs.pb_root }}{% endraw %}/protofiles-in"
+dest_path = "{% raw %}{{ qroma.project_dirs.pb_root }}{% endraw %}/protofiles-out"
 
 
 [qroma.project.stages.sw.protobuf.replication]
-nanopb.dirs = ["firmware/esp32/{{ qroma_project.project_id }}/src/qroma-proto", ]
-python.dirs = ["apps/py-qroma-io/qroma_proto", ]
-typescript.dirs = ["sites/site-www-{{ qroma_project.project_id }}/src/qroma-proto", ]
+nanopb.dirs = ["{% raw %}{{ qroma.project_dirs.firmware_root }}{% endraw %}/src/qroma-proto", ]
+python.dirs = ["{% raw %}{{ qroma.project_dirs.app_root }}{% endraw %}/qroma_proto", ]
+typescript.dirs = ["{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/src/qroma-proto", ]
 dart.dirs = []
 
 
@@ -54,37 +61,46 @@ project_dirs = []
 
 
 [qroma.project.stages.sw.sites.bundle]
-bundle_static_dir="sites/site-www-{{ qroma_project.project_id }}/static"
-bundle_version_content_root_dir_template="{bundle_root_path}/qroma/versions"
+local_bundle_static_dir="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static"
+local_bundle_static_qroma_dir="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static/qroma"
+local_bundle_version_content_root_dir="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static/qroma/versions"
+hosted_qroma_bundle_root="/qroma"
+hosted_qroma_bundle_versions_root="/qroma/versions"
+hosted_bundle_version_path="/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}"
 
 
 [[qroma.project.stages.sw.sites.bundle.publish_version.firmware_file_replications]]
-source_filepath="firmware/esp32/{{ qroma_project.project_id }}/.pio/build/esp32dev/firmware.bin"
-publication_filepath="firmware/firmware.bin"
+source_filepath="{% raw %}{{ qroma.project_dirs.firmware_root }}{% endraw %}/.pio/build/esp32dev/firmware.bin"
+local_publication_filepath="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/firmware.bin"
+hosted_publication_filepath="/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/firmware.bin"
 
 
 [[qroma.project.stages.sw.sites.bundle.publish_version.firmware_file_replications]]
-source_filepath="firmware/esp32/{{ qroma_project.project_id }}/.pio/build/esp32dev/bootloader.bin"
-publication_filepath="firmware/bootloader.bin"
+source_filepath="{% raw %}{{ qroma.project_dirs.firmware_root }}{% endraw %}/.pio/build/esp32dev/bootloader.bin"
+local_publication_filepath="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/bootloader.bin"
+hosted_publication_filepath="/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/bootloader.bin"
 
 
 [[qroma.project.stages.sw.sites.bundle.publish_version.firmware_file_replications]]
-source_filepath="firmware/esp32/{{ qroma_project.project_id }}/.pio/build/esp32dev/partitions.bin"
-publication_filepath="firmware/partitions.bin"
+source_filepath="{% raw %}{{ qroma.project_dirs.firmware_root }}{% endraw %}/.pio/build/esp32dev/partitions.bin"
+local_publication_filepath="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/partitions.bin"
+hosted_publication_filepath="/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/partitions.bin"
 
 
 [[qroma.project.stages.sw.sites.bundle.publish_version.firmware_file_replications]]
-source_filepath="C:/Users/ajb/.platformio/packages/framework-arduinoespressif32/tools/partitions/boot_app0.bin"
-publication_filepath="firmware/boot_app0.bin"
+source_filepath="{% raw %}{{ qroma.user_profile_dirs.platform_io_packages_root }}{% endraw %}/framework-arduinoespressif32/tools/partitions/boot_app0.bin"
+local_publication_filepath="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/boot_app0.bin"
+hosted_publication_filepath="/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/boot_app0.bin"
 
 
 [[qroma.project.stages.sw.sites.bundle.publish_version.zipped_dirs]]
-source_dir="protobufs/protofiles-out"
-publication_zip_file="protobufs.zip"
+source_dir="{% raw %}{{ qroma.project_dirs.pb_root }}{% endraw %}/protofiles-out"
+local_publication_zip_file="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/protobufs.zip"
 
 
 [[qroma.project.stages.sw.sites.bundle.publish_version.generated_files]]
-publication_filepath="firmware/manifest-firmware.json"
+local_publication_filepath="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/manifest-firmware.json"
+hosted_publication_filepath="/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/manifest-firmware.json"
 template_str="""{
   "name": "{{ qroma_project.project_id }}",
   "version": "esp32",
