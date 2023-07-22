@@ -3,49 +3,86 @@
 #include "qroma/qroma.h"
 
 
+AppCommandProcessor<
+  MyAppCommand, MyAppCommand_fields,
+  MyAppResponse, MyAppResponse_fields
+> myAppCommandProcessor(onMyAppCommand);
+
 QromaSerialCommApp myQromaApp;
+
+extern SetUpdateConfiguration updateConfiguration;
 
 
 void qromaProjectSetup()
 {
-  registerPbCommandFunction<
-    HelloQromaRequest, HelloQromaRequest_fields,
-    HelloQromaResponse, HelloQromaResponse_fields
-  >(onHelloQroma, &myQromaApp);
+  myQromaApp.setAppCommandProcessor(&myAppCommandProcessor);
 
-  configureQromaApp([](QromaAppConfig * config) {
-    config->loggerConfig.logLevel = Qroma_LogLevel_LogLevel_Error;
-  }, &myQromaApp);
-
-  configureSerialCommIo([](QromaCommSerialIoConfig * config) {
+  myQromaApp.configureSerialCommIo([](QromaCommSerialIoConfig * config) {
     config->baudRate = 115200;
     config->rxBufferSize = 1000;
     config->txBufferSize = 1000;
-  }, &myQromaApp);
+  });
 
-  startupQroma(&myQromaApp);
+  myQromaApp.configureQromaApp([](QromaAppConfig * config) {
+    config->loggerConfig.logLevel = Qroma_LogLevel_LogLevel_Info;
+  });
+
+  updateConfiguration.updateIntervalInMs = 1000;
+  updateConfiguration.updateType = UpdateType_UpdateType_ProgressIndicator;
+
+  myQromaApp.startupQroma();
 }
 
 
-// void qromaProjectLoop()
-// {
-//   delay(1000);
-// }
 
-int counter = 0;
+int updateCounter = 0;
 
-void qromaHeartbeatUpdateLoop()
+
+void sendUptimeUpdateResponse() {
+  MyAppResponse myAppResponse = MyAppResponse_init_zero;
+  myAppResponse.which_response = MyAppResponse_update_tag;
+  myAppResponse.response.update.which_update = UpdateResponse_uptimeUpdateResponse_tag;
+  myAppResponse.response.update.update.uptimeUpdateResponse.uptime = millis();
+
+  myQromaApp.sendQromaAppResponse<MyAppResponse, MyAppResponse_fields>(&myAppResponse);
+
+  logInfo("sendUptimeUpdateResponse() complete");
+}
+
+void sendProgressUpdateResponse() {
+  MyAppResponse myAppResponse = MyAppResponse_init_zero;
+  myAppResponse.which_response = MyAppResponse_update_tag;
+  myAppResponse.response.update.which_update = UpdateResponse_progressIndicatorUpdateResponse_tag;
+  
+  myAppResponse.response.update.update.progressIndicatorUpdateResponse.progressIndicator[0] = '.';
+  int dotCount = updateCounter % 45;
+  for (int i=1; i < dotCount; i++) {
+    myAppResponse.response.update.update.progressIndicatorUpdateResponse.progressIndicator[i] = '.';
+  }
+
+  myQromaApp.sendQromaAppResponse<MyAppResponse, MyAppResponse_fields>(&myAppResponse);
+
+  logInfo("sendProgressUpdateResponse() complete");
+}
+
+
+void qromaProjectLoop()
 {
-  auto qhb = QromaHeartbeatUpdate();
+  delay(updateConfiguration.updateIntervalInMs);
+  updateCounter++;
+  // logInfo(updateCounter);
 
-  char tickBuffer[10];
-  itoa(counter, tickBuffer, 10);
-  counter++;
-
-  strncat(qhb.heartbeatMessage, "Hello Qroma [{{ qroma_project.project_id }}]: ", sizeof(QromaHeartbeatUpdate::heartbeatMessage) - 1);
-  strncat(qhb.heartbeatMessage, tickBuffer, sizeof(QromaHeartbeatUpdate::heartbeatMessage) - 1);
-  qhb.uptime = millis();
-
-  sendSerialPb64NewLineMessage<QromaHeartbeatUpdate, QromaHeartbeatUpdate_fields>(&qhb, &myQromaApp);
-  delay(1000);
+  switch (updateConfiguration.updateType) {
+    case UpdateType_UpdateType_Interval:
+      // setLightColor(0, 20, 0);
+      sendUptimeUpdateResponse();
+      break;
+    case UpdateType_UpdateType_ProgressIndicator:
+      // setLightColor(0, 0, 20);
+      sendProgressUpdateResponse();
+      break;
+    default:
+      // setLightColor(updateCounter, 0, 0);
+      break;
+  }
 }

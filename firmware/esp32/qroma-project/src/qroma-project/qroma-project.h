@@ -9,6 +9,4 @@ void qromaProjectSetup();
 
 void qromaProjectLoop();
 
-void qromaHeartbeatUpdateLoop();
-
 #endif

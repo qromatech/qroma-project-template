@@ -7,7 +7,7 @@ title: Qroma Comm Types
 Introspection stuff for declared types goes here...
   
 import { QromaAppMessages } from "../qroma-app/QromaAppMessages";
-import { QromaAppViewMessageTypesComponent } from "react-qroma";
+import { QromaAppViewMessageTypesComponent } from "../react-qroma-lib";
 
 
 <QromaAppViewMessageTypesComponent

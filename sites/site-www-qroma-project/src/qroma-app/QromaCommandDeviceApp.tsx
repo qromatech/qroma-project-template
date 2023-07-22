@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { MessageType } from "@protobuf-ts/runtime";
-import { QromaRequestForm } from "react-qroma";
-import { QromaCommMonitor } from 'react-qroma';
+import { QromaRequestForm } from "../react-qroma-lib";
+import { QromaCommMonitor } from '../react-qroma-lib';
 
 
 interface IQromaCommandDeviceAppProps<T extends object, U extends object> {

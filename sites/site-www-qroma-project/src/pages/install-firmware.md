@@ -4,7 +4,7 @@ title: Install Device Firmware
 
 # Install Device Firmware to ESP32
 
-import { EspWebInstallButton } from 'react-qroma';
+import { EspWebInstallButton } from '../react-qroma-lib';
 import { getManifestPath } from '../qroma-app/getManifestPath';
 
 

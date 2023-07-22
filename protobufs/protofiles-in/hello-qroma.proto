@@ -1,12 +1,6 @@
 syntax = "proto3";
 
 
-message QromaHeartbeatUpdate {
-  string heartbeatMessage = 1;
-  uint32 uptime = 2;
-}
-
-
 message HelloQromaRequest {
   string name = 1;
 }
@@ -49,5 +43,62 @@ message MathResponse {
     MathResult_Add addResult = 1;
     MathResult_Subtract subtractResult = 2;
     MathResult_AddAndSubtract addAndSubtractResult = 3;
+  }
+}
+
+
+enum UpdateType {
+  UpdateType_NotSet = 0;
+  UpdateType_None = 1;
+  UpdateType_Interval = 2;
+  UpdateType_ProgressIndicator = 3;
+  UpdateType_Message = 4;
+}
+
+message SetUpdateConfiguration {
+  UpdateType updateType = 1;
+  uint32 updateIntervalInMs = 2;
+}
+
+message SetUpdateConfigurationResponse {
+  bool success = 1;
+}
+
+message UptimeUpdateResponse {
+  uint32 uptime = 1;
+}
+
+message ProgressIndicatorUpdateResponse {
+  string progressIndicator = 1;
+}
+
+message UpdateMessageResponse {
+  string message = 1;
+}
+
+
+message UpdateResponse {
+  oneof update {
+    UptimeUpdateResponse uptimeUpdateResponse = 1;
+    ProgressIndicatorUpdateResponse progressIndicatorUpdateResponse = 2;
+    UpdateMessageResponse updateMessageResponse = 3;
+  }
+}
+
+
+message MyAppCommand {
+  oneof command {
+    HelloQromaRequest helloQromaRequest = 1;
+    MathRequest mathRequest = 2;
+    SetUpdateConfiguration setUpdateConfiguration = 3;
+  }
+}
+
+message MyAppResponse {
+  oneof response {
+    HelloQromaResponse helloQromaResponse = 1;
+    MathResponse mathResponse = 2;
+    SetUpdateConfigurationResponse setUpdateConfigurationResponse = 3;
+    UpdateResponse update = 4;
   }
 }
