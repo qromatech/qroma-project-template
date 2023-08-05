@@ -12,7 +12,7 @@ import { QromaCommMonitor } from "../react-qroma-lib";
 <BrowserOnly>
 {() =>
   <QromaCommMonitor
-    messageType={MyAppResponse}
+    responseMessageType={MyAppResponse}
     />
 }
 </BrowserOnly>

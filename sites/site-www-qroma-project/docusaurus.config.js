@@ -79,10 +79,10 @@ const config = {
 //        },
         items: [
           {to: '/install-firmware', label: 'Install Firmware', position: 'left'},
+          {to: '/qroma-app-message-types', label: 'Message Types', position: 'left'},
           {to: '/monitor-device', label: 'Monitor Device', position: 'left'},
           {to: '/command-device', label: 'Command Device', position: 'left'},
           {to: '/qroma-comm-files', label: 'Filesystem', position: 'left'},
-          {to: '/qroma-comm-types', label: 'Comm Types', position: 'left'},
           {
             href: 'https://qroma.dev',
             label: 'qroma.dev',

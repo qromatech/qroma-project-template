@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { MessageType } from "@protobuf-ts/runtime";
-import { IUseQromaAppWebSerialInputs, QromaCommResponse, QromaRequestForm, useQromaAppWebSerial } from "../react-qroma-lib";
-import { QromaCommMonitor } from '../react-qroma-lib';
+import { IUseQromaAppWebSerialInputs, PortRequestResult, QromaCommResponse, QromaRequestForm, useQromaAppWebSerial } from "../react-qroma-lib";
 
 
 interface IQromaCommandDeviceAppProps<T extends object, U extends object> {
@@ -12,20 +11,30 @@ interface IQromaCommandDeviceAppProps<T extends object, U extends object> {
 
 export const QromaCommandDeviceApp = <T extends object, U extends object>(props: IQromaCommandDeviceAppProps<T, U>) => {
   
-  const [response, setResponse] = useState("NOT SET");
+  const [qromaAppResponse, setQromaAppResponse] = useState(props.responseMessageType.create());
+  const [isPortConnected, setIsPortConnected] = useState(false);
 
   const inputs: IUseQromaAppWebSerialInputs<T, U> = {
     onQromaAppResponse: (appMessage: U) => {
-      console.log("QromaRequestForm - onQromaAppResponse");
+      console.log("QromaRequestForm - onQromaAppResponse!!");
       console.log(appMessage);
+      setQromaAppResponse(appMessage);
     },
     onQromaCommResponse: (message: QromaCommResponse) => {
-      console.log("QromaRequestForm - onQromaCommResponse");
+      console.log("QromaRequestForm - onQromaCommResponse!!");
       console.log(message);
     },
     commandMessageType: props.requestMessageType,
     responseMessageType: props.responseMessageType,
-    onPortRequestResult: () => { console.log("PORT REQUEST COMPLETE") }
+    onPortRequestResult: (requestResult: PortRequestResult) => { 
+      console.log("PORT REQUEST RESULT");
+      console.log(requestResult);
+      if (requestResult.success) {
+        setIsPortConnected(true);
+      } else {
+        setIsPortConnected(false);
+      }
+    }
   }
   const qromaWebSerial = useQromaAppWebSerial(inputs);
   
@@ -34,7 +43,7 @@ export const QromaCommandDeviceApp = <T extends object, U extends object>(props:
       {props.requestMessageType.typeName} => {props.responseMessageType.typeName}
 
       <div>
-        {response}
+        Serial Connected? { qromaWebSerial.getIsConnected() ? "Yes" : "No" } / { isPortConnected ? "Yes" : "No" }
       </div> 
 
       <QromaRequestForm
@@ -43,10 +52,17 @@ export const QromaCommandDeviceApp = <T extends object, U extends object>(props:
         qromaWebSerial={qromaWebSerial}
         />
 
-
+      <div>
+        QC Response: 
+      </div>
+      <div>
+        App Response: {JSON.stringify(qromaAppResponse)}
+      </div>
+{/* 
       <QromaCommMonitor
-        messageType={props.responseMessageType}
-        />
+        responseMessageType={props.responseMessageType}
+        qromaWebSerial={qromaWebSerial}
+        /> */}
     </>
   )
 }

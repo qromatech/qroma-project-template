@@ -52,7 +52,6 @@ enum UpdateType {
   UpdateType_None = 1;
   UpdateType_Interval = 2;
   UpdateType_ProgressIndicator = 3;
-  UpdateType_Message = 4;
 }
 
 message SetUpdateConfiguration {
@@ -64,6 +63,15 @@ message SetUpdateConfigurationResponse {
   bool success = 1;
 }
 
+message SetUpdateProgressIndicator {
+  string indicatorChars = 1;
+}
+
+message SetUpdateProgressIndicatorResponse {
+  bool success = 1;
+  string statusMessage = 2;
+}
+
 message UptimeUpdateResponse {
   uint32 uptime = 1;
 }
@@ -72,17 +80,20 @@ message ProgressIndicatorUpdateResponse {
   string progressIndicator = 1;
 }
 
-message UpdateMessageResponse {
-  string message = 1;
-}
-
-
 message UpdateResponse {
   oneof update {
     UptimeUpdateResponse uptimeUpdateResponse = 1;
     ProgressIndicatorUpdateResponse progressIndicatorUpdateResponse = 2;
-    UpdateMessageResponse updateMessageResponse = 3;
   }
+}
+
+message PingRequest {
+  uint32 pingId = 1;
+}
+
+message PingResponse {
+  uint32 pingId = 1;
+  uint32 uptime = 2;
 }
 
 
@@ -91,6 +102,8 @@ message MyAppCommand {
     HelloQromaRequest helloQromaRequest = 1;
     MathRequest mathRequest = 2;
     SetUpdateConfiguration setUpdateConfiguration = 3;
+    SetUpdateProgressIndicator setUpdateProgressIndicator = 4;
+    PingRequest pingRequest = 5;
   }
 }
 
@@ -99,6 +112,8 @@ message MyAppResponse {
     HelloQromaResponse helloQromaResponse = 1;
     MathResponse mathResponse = 2;
     SetUpdateConfigurationResponse setUpdateConfigurationResponse = 3;
-    UpdateResponse update = 4;
+    SetUpdateProgressIndicatorResponse setUpdateProgressIndicatorResponse = 4;
+    PingResponse pingResponse = 5;
+    UpdateResponse update = 6;
   }
 }
