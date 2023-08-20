@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: '{{qroma_project.project_id}}',
-  tagline: 'Embedded device communication... simplified',
+  tagline: 'Embedded device development and deployment. Streamlined. Simplified.',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
