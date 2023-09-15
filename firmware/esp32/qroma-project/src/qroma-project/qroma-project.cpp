@@ -28,7 +28,8 @@ void qromaProjectSetup()
   });
 
   updateConfiguration.updateIntervalInMs = 1000;
-  updateConfiguration.updateType = UpdateType_UpdateType_ProgressIndicator;
+  // updateConfiguration.updateType = UpdateType_UpdateType_ProgressIndicator;
+  updateConfiguration.updateType = UpdateType_UpdateType_None;
 
   myQromaApp.startupQroma();
 }
@@ -53,7 +54,7 @@ void sendProgressUpdateResponse() {
   MyAppResponse myAppResponse = MyAppResponse_init_zero;
   myAppResponse.which_response = MyAppResponse_update_tag;
   myAppResponse.response.update.which_update = UpdateResponse_progressIndicatorUpdateResponse_tag;
-  
+
   myAppResponse.response.update.update.progressIndicatorUpdateResponse.progressIndicator[0] = '.';
   int dotCount = updateCounter % 45;
   for (int i=1; i < dotCount; i++) {
@@ -70,19 +71,15 @@ void qromaProjectLoop()
 {
   delay(updateConfiguration.updateIntervalInMs);
   updateCounter++;
-  // logInfo(updateCounter);
 
   switch (updateConfiguration.updateType) {
     case UpdateType_UpdateType_Interval:
-      // setLightColor(0, 20, 0);
       sendUptimeUpdateResponse();
       break;
     case UpdateType_UpdateType_ProgressIndicator:
-      // setLightColor(0, 0, 20);
       sendProgressUpdateResponse();
       break;
     default:
-      // setLightColor(updateCounter, 0, 0);
       break;
   }
 }
