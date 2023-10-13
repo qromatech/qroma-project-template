@@ -14,12 +14,12 @@ const config = {
   url: 'https://your-docusaurus-test-site.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/{{ qroma_project.project_id }}/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: '{{ qroma_project.project_id }}', // Usually your GitHub org/user name.
+  projectName: '{{ qroma_project.project_id }}', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -35,7 +35,7 @@ const config = {
   scripts: [
     // 'https://unpkg.com/esp-web-tools@9.2.1/dist/web/install-button.js?module'
     {
-      src: '/esp-web-tools/install-button.js?module',
+      src: '/{{ qroma_project.project_id }}/esp-web-tools/install-button.js?module',
       async: true,
     },
   ],
