@@ -29,7 +29,7 @@ void qromaProjectSetup()
 
   updateConfiguration.updateIntervalInMs = 1000;
   // updateConfiguration.updateType = UpdateType_UpdateType_ProgressIndicator;
-  updateConfiguration.updateType = UpdateType_UpdateType_None;
+  updateConfiguration.updateType = UpdateType_UpdateType_Interval;
 
   myQromaApp.startupQroma();
 }
