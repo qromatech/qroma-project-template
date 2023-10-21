@@ -47,7 +47,7 @@ void sendUptimeUpdateResponse() {
 
   myQromaApp.sendQromaAppResponse<MyAppResponse, MyAppResponse_fields>(&myAppResponse);
 
-  logInfo("sendUptimeUpdateResponse() complete");
+  logInfo("Update from {{ qroma_project.project_id }}");
 }
 
 void sendProgressUpdateResponse() {
