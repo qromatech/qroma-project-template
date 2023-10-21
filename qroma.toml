@@ -71,26 +71,50 @@ hosted_bundle_version_path="/qroma/versions/{% raw %}{{ qroma.project_version }}
 
 [[qroma.project.stages.sw.sites.bundle.publish_version.firmware_file_replications]]
 source_filepath="{% raw %}{{ qroma.project_dirs.firmware_root }}{% endraw %}/.pio/build/esp32dev/firmware.bin"
-local_publication_filepath="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/firmware.bin"
-hosted_publication_filepath="/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/firmware.bin"
+local_publication_filepath="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/esp32dev/firmware.bin"
+hosted_publication_filepath="/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/esp32dev/firmware.bin"
 
 
 [[qroma.project.stages.sw.sites.bundle.publish_version.firmware_file_replications]]
 source_filepath="{% raw %}{{ qroma.project_dirs.firmware_root }}{% endraw %}/.pio/build/esp32dev/bootloader.bin"
-local_publication_filepath="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/bootloader.bin"
-hosted_publication_filepath="/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/bootloader.bin"
+local_publication_filepath="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/esp32dev/bootloader.bin"
+hosted_publication_filepath="/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/esp32dev/bootloader.bin"
 
 
 [[qroma.project.stages.sw.sites.bundle.publish_version.firmware_file_replications]]
 source_filepath="{% raw %}{{ qroma.project_dirs.firmware_root }}{% endraw %}/.pio/build/esp32dev/partitions.bin"
-local_publication_filepath="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/partitions.bin"
-hosted_publication_filepath="/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/partitions.bin"
+local_publication_filepath="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/esp32dev/partitions.bin"
+hosted_publication_filepath="/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/esp32dev/partitions.bin"
 
 
 [[qroma.project.stages.sw.sites.bundle.publish_version.firmware_file_replications]]
 source_filepath="{% raw %}{{ qroma.user_profile_dirs.platform_io_packages_root }}{% endraw %}/framework-arduinoespressif32/tools/partitions/boot_app0.bin"
-local_publication_filepath="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/boot_app0.bin"
-hosted_publication_filepath="/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/boot_app0.bin"
+local_publication_filepath="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/esp32dev/boot_app0.bin"
+hosted_publication_filepath="/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/esp32dev/boot_app0.bin"
+
+
+[[qroma.project.stages.sw.sites.bundle.publish_version.firmware_file_replications]]
+source_filepath="{% raw %}{{ qroma.project_dirs.firmware_root }}{% endraw %}/.pio/build/adafruit_qtpy_esp32c3/firmware.bin"
+local_publication_filepath="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/adafruit_qtpy_esp32c3/firmware.bin"
+hosted_publication_filepath="/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/adafruit_qtpy_esp32c3/firmware.bin"
+
+
+[[qroma.project.stages.sw.sites.bundle.publish_version.firmware_file_replications]]
+source_filepath="{% raw %}{{ qroma.project_dirs.firmware_root }}{% endraw %}/.pio/build/adafruit_qtpy_esp32c3/bootloader.bin"
+local_publication_filepath="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/adafruit_qtpy_esp32c3/bootloader.bin"
+hosted_publication_filepath="/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/adafruit_qtpy_esp32c3/bootloader.bin"
+
+
+[[qroma.project.stages.sw.sites.bundle.publish_version.firmware_file_replications]]
+source_filepath="{% raw %}{{ qroma.project_dirs.firmware_root }}{% endraw %}/.pio/build/adafruit_qtpy_esp32c3/partitions.bin"
+local_publication_filepath="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/adafruit_qtpy_esp32c3/partitions.bin"
+hosted_publication_filepath="/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/adafruit_qtpy_esp32c3/partitions.bin"
+
+
+[[qroma.project.stages.sw.sites.bundle.publish_version.firmware_file_replications]]
+source_filepath="{% raw %}{{ qroma.user_profile_dirs.platform_io_packages_root }}{% endraw %}/framework-arduinoespressif32/tools/partitions/boot_app0.bin"
+local_publication_filepath="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/adafruit_qtpy_esp32c3/boot_app0.bin"
+hosted_publication_filepath="/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/adafruit_qtpy_esp32c3/boot_app0.bin"
 
 
 [[qroma.project.stages.sw.sites.bundle.publish_version.zipped_dirs]]
@@ -108,10 +132,19 @@ template_str="""{
     {
       "chipFamily": "ESP32",
       "parts": [
-        { "path": "bootloader.bin", "offset": 4096 },
-        { "path": "partitions.bin", "offset": 32768 },
-        { "path": "boot_app0.bin", "offset": 57344 },
-        { "path": "firmware.bin", "offset": 65536 }
+        { "path": "esp32dev/bootloader.bin", "offset": 4096 },
+        { "path": "esp32dev/partitions.bin", "offset": 32768 },
+        { "path": "esp32dev/boot_app0.bin", "offset": 57344 },
+        { "path": "esp32dev/firmware.bin", "offset": 65536 }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-C3",
+      "parts": [
+        { "path": "adafruit_qtpy_esp32c3/bootloader.bin", "offset": 0 },
+        { "path": "adafruit_qtpy_esp32c3/partitions.bin", "offset": 32768 },
+        { "path": "adafruit_qtpy_esp32c3/boot_app0.bin", "offset": 57344 },
+        { "path": "adafruit_qtpy_esp32c3/firmware.bin", "offset": 65536 }
       ]
     }
   ]
