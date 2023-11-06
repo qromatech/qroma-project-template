@@ -33,6 +33,9 @@ void onMyAppCommand(MyAppCommand * message, MyAppResponse * response) {
       response->which_response = MyAppResponse_pingResponse_tag;
       response->response.pingResponse.pingId = message->command.pingRequest.pingId;
       response->response.pingResponse.uptime = millis();
+    default:
+      logError("Unrecognized MyAppCommand command");
+      logError(message->which_command);
       break;
   }
 }
