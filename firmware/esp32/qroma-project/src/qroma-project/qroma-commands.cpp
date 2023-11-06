@@ -31,6 +31,7 @@ void onMyAppCommand(MyAppCommand * message, MyAppResponse * response) {
       break;
     case MyAppCommand_pingRequest_tag:
       response->which_response = MyAppResponse_pingResponse_tag;
+      response->response.pingResponse = PingResponse_init_zero;
       response->response.pingResponse.pingId = message->command.pingRequest.pingId;
       response->response.pingResponse.uptime = millis();
     default:
