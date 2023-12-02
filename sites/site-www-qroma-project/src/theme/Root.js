@@ -1,7 +1,6 @@
 import React from 'react';
 import { QromaPageAppContext } from '../react-qroma-lib/qroma-lib/page-app/QromaPageAppContext';
 import { _createQromaPageApp } from '../react-qroma-lib/qroma-lib/page-app/QromaPageApp';
-import BrowserOnly from '@docusaurus/BrowserOnly';
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
 console.log("IN ROOT OF APP")
@@ -9,15 +8,21 @@ console.log("IN ROOT OF APP")
 
 export const Root = ({children}) => {
 
-  const qromaPageApp = ExecutionEnvironment.canUseDOM ? _createQromaPageApp() : undefined;
-  
-  return (
-    <BrowserOnly>
+  if (ExecutionEnvironment.canUseDOM) {
+    const qromaPageApp = _createQromaPageApp();
+
+    return (
       <QromaPageAppContext.Provider value={qromaPageApp}>
         {children}
       </QromaPageAppContext.Provider>
-    </BrowserOnly>
-  )
+    )
+  } else {
+    return (
+      <div>
+        THIS SHOULD BE BROWSER ONLY
+      </div>
+    )
+  }
 }
 
 export default Root;
