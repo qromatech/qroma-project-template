@@ -77,6 +77,7 @@ const config = {
 //          src: 'img/logo.svg',
 //        },
         items: [
+          {to: '/licenses', label: 'Licenses', position: 'left'},
           {to: '/install-firmware', label: 'Install Firmware', position: 'left'},
           {to: '/qroma-app-message-types', label: 'Message Types', position: 'left'},
           {to: '/monitor-device', label: 'Monitor Device', position: 'left'},
