@@ -21,3 +21,4 @@ This project's website, firmware, and development tooling includes software from
 * protobuf-ts - https://github.com/timostamm/protobuf-ts
 * crc - https://github.com/alexgorbatchev/crc
 * clsx - https://github.com/lukeed/clsx
+* `react-qroma-lib` - https://github.com/qromatech/react-qroma-lib
