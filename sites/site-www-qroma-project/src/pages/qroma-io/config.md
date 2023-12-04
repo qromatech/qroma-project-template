@@ -5,14 +5,14 @@ title: Qroma Lights Config
 # Qroma Lights Config MD
 
 import BrowserOnly from '@docusaurus/BrowserOnly';
-import { QromaLightsConfig } from "../../qroma-proto/qroma-lights-types";
+import { QromaCommConfig } from "../../qroma-proto/qroma-config";
 import { QromaIoShowQromaFileAsMessageTypeComponent } from "../../react-qroma-lib";
 
 <BrowserOnly>
 {() =>
   <QromaIoShowQromaFileAsMessageTypeComponent
-    fileMessageType={QromaLightsConfig}
-    filePath="/config.qroma"
+    fileMessageType={QromaCommConfig}
+    filePath="/comm-config.qroma"
     />
 }
 </BrowserOnly>
