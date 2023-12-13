@@ -77,3 +77,11 @@
   font-weight: bold;
   color: rgb(183, 81, 158);
 }
+
+.pagination-nav {
+  display: none;
+}
+
+.breadcrumbs {
+  display: none;
+}

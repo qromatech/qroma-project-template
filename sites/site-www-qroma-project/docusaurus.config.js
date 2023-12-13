@@ -39,6 +39,15 @@ const config = {
     },
   ],
 
+  plugins: [
+    ['@docusaurus/plugin-content-docs', {
+      id: 'advanced',
+      path: 'src/advanced-io',
+      routeBasePath: 'advanced-io',
+      sidebarPath: require.resolve('./sidebar-advanced.js'),
+    }],
+  ],
+
   presets: [
     [
       'classic',
@@ -79,10 +88,17 @@ const config = {
         items: [
           {to: '/licenses', label: 'Licenses', position: 'left'},
           {to: '/install-firmware', label: 'Install Firmware', position: 'left'},
-          {to: '/qroma-app-message-types', label: 'Message Types', position: 'left'},
-          {to: '/monitor-device', label: 'Monitor Device', position: 'left'},
           {to: '/command-device', label: 'Command Device', position: 'left'},
-          {to: '/qroma-comm-files', label: 'Filesystem', position: 'left'},
+          {
+            to: '/advanced-io',
+            sidebarId: 'advancedIoSidebar',
+            position: 'left',
+            label: 'Advanced',
+          },
+          {
+            type: 'custom-navbarConnectionComponent',
+            position: "right",
+          },
           {
             href: 'https://qroma.dev',
             label: 'qroma.dev',
