@@ -91,7 +91,6 @@ const config = {
           {to: '/command-device', label: 'Command Device', position: 'left'},
           {
             to: '/advanced-io',
-            sidebarId: 'advancedIoSidebar',
             position: 'left',
             label: 'Advanced',
           },
