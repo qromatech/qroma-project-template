@@ -110,7 +110,7 @@ source_dir="{% raw %}{{ qroma.project_dirs.pb_root }}{% endraw %}/protofiles-out
 local_publication_zip_file="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/protobufs.zip"
 
 
-[qroma.project.stages.sw.sites.bundle.publish_version.generated_files]
+qroma.project.stages.sw.sites.bundle.publish_version.generated_files = []
 #local_publication_filepath="{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/static/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/manifest-firmware.json"
 #hosted_publication_filepath="/qroma/versions/{% raw %}{{ qroma.project_version }}{% endraw %}/firmware/manifest-firmware.json"
 #template_str="""{
