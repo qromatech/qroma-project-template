@@ -11,7 +11,7 @@ print(dir(BOARD_CONFIG))
 board_variant = BOARD_CONFIG.get("build.variant")
 print("MERGING FIRMWARE FOR BOARD '" + board_variant + "'")
 
-PROJECT_ID = "{{ qroma_project.project_id }}"
+PROJECT_ID = "{ qroma_project.project_id }"
 MERGED_BIN_FILENAME = f"{PROJECT_ID}-firmware-{board_variant}.bin"
 
 MERGED_BIN = f"$BUILD_DIR/{MERGED_BIN_FILENAME}"
