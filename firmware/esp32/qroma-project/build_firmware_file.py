@@ -2,6 +2,7 @@
 
 Import("env")
 import os
+import json
 
 APP_BIN = "$BUILD_DIR/${PROGNAME}.bin"
 BOARD_CONFIG = env.BoardConfig()
@@ -47,6 +48,24 @@ def create_esp_web_tools_manifest(source, target, env):
     firmware_path = target[0].get_abspath()
     firmware_dir = os.path.dirname(firmware_path)
     print(firmware_dir)
+
+    manifest_json_obj = {
+        "name": PROJECT_ID,
+        "version": "esp32",
+        "builds": [
+            {
+                "chipFamily": CHIP_FAMILY,
+                "parts": [
+                    {
+                        "path": MERGED_BIN,
+                        "offset": 0,
+                    }
+                ]
+            }
+        ]
+    }
+    manifest_json = json.dumps(manifest_json_obj)
+    print(manifest_json)
 
     manifest_filename = f"{firmware_dir}/{PROJECT_ID}-manifest-{board_variant}.json"
     print("WRITING MANIFEST TO " + manifest_filename)
