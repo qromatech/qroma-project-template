@@ -5,7 +5,7 @@ title: Install Device Firmware
 # Install Device Firmware to ESP32
 
 import { EspWebInstallButton } from '../react-qroma-lib';
-import { firmwareManifest } from '../qroma-app/firmwareManifest';
+import { createManifestPath } from '../qroma-app/firmwareManifest';
 
 
 Installation of the firmware for {{ qroma_project.project_id }} is easy to do using a Chrome or Edge desktop
