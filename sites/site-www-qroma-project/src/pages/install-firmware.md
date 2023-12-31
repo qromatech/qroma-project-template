@@ -15,12 +15,34 @@ you are using below and click the button to install.
 <div title='ESP32 Dev Board'>
   <EspWebInstallButton
     label='Install on ESP32 Dev Board'
-    instructionsText="Plug your ESP32 Dev board into your computer's USB port and click the button below to install the firmware onto your ESP32 device."
-    manifestPath={createManifestPath('qroma/versions/0.1.0/firmware/esp32dev/qroma-boards-manifest-esp32.json')}
+    instructionsText="Plug your ESP32 Dev board into your computer's USB port and click the button below to install firmware."
+    manifestPath={createManifestPath('qroma/versions/0.1.0/firmware/esp32dev/{{ qroma_project.project_id }}-manifest-esp32.json')}
+    />
+</div>
+
+<br/>
+<br/>
+
+<div title='TinyPICO Board'>
+  <EspWebInstallButton
+    label='Install on TinyPICO Board'
+    instructionsText="Plug your TinyPICO board into your computer's USB port and click the button below to install firmware."
+    manifestPath={createManifestPath('qroma/versions/0.1.0/firmware/tinypico/{{ qroma_project.project_id }}-manifest-um_tinypico.json')}
+    />
+</div>
+
+<br/>
+<br/>
+
+<div title='ESP32 Dev Board'>
+  <EspWebInstallButton
+    label='Install on Adafruit QT Py Board'
+    instructionsText="Plug your Adafruit QT Py board into your computer's USB port and click the button below to install firmware."
+    manifestPath={createManifestPath('qroma/versions/0.1.0/firmware/adafruit_qtpy_esp32c3/{{ qroma_project.project_id }}-manifest-adafruit_qtpy_esp32c3.json')}
     />
 </div>
 
 <br/>
 <br/>
 <br/>
-<a href='https://esphome.github.io/esp-web-tools/'>ESP Web Tools</a> is used to install firmware via WebSerial. The installer button uses a <a href={createManifestPath('qroma/versions/0.1.0/firmware/esp32dev/qroma-boards-manifest-esp32.json')} target=''>manifest file </a> to know which files should be installed for its board.
+<a href='https://esphome.github.io/esp-web-tools/'>ESP Web Tools</a> is used to install firmware via WebSerial. The installer button uses a <a href={createManifestPath('qroma/versions/0.1.0/firmware/esp32dev/{{ qroma_project.project_id }}-manifest-esp32.json')} target=''>manifest file </a> to know which files should be installed for its board.
