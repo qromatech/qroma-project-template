@@ -48,6 +48,11 @@ def create_esp_web_tools_manifest(source, target, env):
     firmware_dir = os.path.dirname(firmware_path)
     print(firmware_dir)
 
+    manifest_filename = f"{firmware_dir}/{PROJECT_ID}-manifest-{board_variant}.json"
+    print("WRITING MANIFEST TO " + manifest_filename)
+    with open(manifest_filename, "w") as f:
+        f.write(manifest_json)
+
 
 # Add a post action that runs esptoolpy to merge available flash images
 env.AddPostAction(APP_BIN , merge_bin)
