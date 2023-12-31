@@ -11,7 +11,7 @@ print(dir(BOARD_CONFIG))
 board_variant = BOARD_CONFIG.get("build.variant")
 print("MERGING FIRMWARE FOR BOARD '" + board_variant + "'")
 
-PROJECT_ID = "{ qroma_project.project_id }"
+PROJECT_ID = "{{ qroma_project.project_id }}"
 MERGED_BIN_FILENAME = f"{PROJECT_ID}-firmware-{board_variant}.bin"
 
 MERGED_BIN = f"$BUILD_DIR/{MERGED_BIN_FILENAME}"
@@ -51,14 +51,14 @@ def create_esp_web_tools_manifest(source, target, env):
   "name": "{PROJECT_ID}",
   "version": "esp32",
   "builds": [
-    {{
-      "chipFamily": "{CHIP_FAMILY}",
+    {{{{
+      "chipFamily": "{{CHIP_FAMILY}}",
       "parts": [
-          {{ "path": "{MERGED_BIN}", "offset": 0 }},
+          {{{{ "path": "{MERGED_BIN}", "offset": 0 }}}},
       ]
-    }},
+    }}}},
   ]
-}}"""
+}}}}"""
     print(manifest_json)
 
     manifest_filename = f"{firmware_dir}/{PROJECT_ID}-manifest-{board_variant}.json"
