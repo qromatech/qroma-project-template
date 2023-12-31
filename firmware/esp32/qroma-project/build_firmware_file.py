@@ -1,6 +1,7 @@
 # based on code and comments found here: https://github.com/platformio/platform-espressif32/issues/1078
 
 Import("env")
+import os
 import json
 
 APP_BIN = "$BUILD_DIR/${PROGNAME}.bin"
