@@ -1,5 +1,6 @@
 #include "qroma-commands.h"
 #include "qroma/qroma.h"
+#include "boards/qroma-boards.h"
 
 
 SetUpdateConfiguration updateConfiguration = SetUpdateConfiguration_init_zero; 

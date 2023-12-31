@@ -9,7 +9,7 @@
 void onInit() { }
 
 void populateGetBoardDetailsResponse(GetBoardDetailsResponse * response) {
-  strncpy(response->boardName, "ESP 32 Dev Board Firmware");
+  strncpy(response->boardName, "ESP 32 Dev Board Firmware", sizeof(response->boardName));
 }
 
 

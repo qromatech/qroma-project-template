@@ -29,7 +29,7 @@ void onInit() {
 }
 
 void populateGetBoardDetailsResponse(GetBoardDetailsResponse * response) {
-  strncpy(response->boardName, "Adafruit QT Py Firmware");
+  strncpy(response->boardName, "Adafruit QT Py Firmware", sizeof(response->boardName));
 }
 
 #endif

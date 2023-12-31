@@ -21,7 +21,7 @@ void onInit() {
 
 
 void populateGetBoardDetailsResponse(GetBoardDetailsResponse * response) {
-  strncpy(response->boardName, "UM TinyPICO Firmware");
+  strncpy(response->boardName, "UM TinyPICO Firmware", sizeof(response->boardName));
 }
 
 
