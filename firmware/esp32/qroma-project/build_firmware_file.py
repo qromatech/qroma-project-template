@@ -48,6 +48,7 @@ def create_esp_web_tools_manifest(source, target, env):
     firmware_path = target[0].get_abspath()
     firmware_dir = os.path.dirname(firmware_path)
     print(firmware_dir)
+    build_part_path = board_variant + "/" + MERGED_BIN_FILENAME
 
     manifest_json_obj = {
         "name": PROJECT_ID,
@@ -57,7 +58,7 @@ def create_esp_web_tools_manifest(source, target, env):
                 "chipFamily": CHIP_FAMILY,
                 "parts": [
                     {
-                        "path": MERGED_BIN,
+                        "path": build_part_path,
                         "offset": 0,
                     }
                 ]
