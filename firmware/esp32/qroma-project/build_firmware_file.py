@@ -40,3 +40,26 @@ def merge_bin(source, target, env):
             + flash_images
         )
     )
+
+
+def create_esp_web_tools_manifest(source, target, env):
+    print("TARGET")
+    firmware_path = target[0].get_abspath()
+    firmware_dir = os.path.dirname(firmware_path)
+    print(firmware_dir)
+
+
+# Add a post action that runs esptoolpy to merge available flash images
+env.AddPostAction(APP_BIN , merge_bin)
+env.AddPostAction(APP_BIN, create_esp_web_tools_manifest)
+
+# Patch the upload command to flash the merged binary at address 0x0
+env.Replace(
+    UPLOADERFLAGS=[
+            f
+            for f in env.get("UPLOADERFLAGS")
+            if f not in env.Flatten(env.get("FLASH_EXTRA_IMAGES"))
+        ]
+        + ["0x0", MERGED_BIN],
+    UPLOADCMD='"$PYTHONEXE" "$UPLOADER" $UPLOADERFLAGS',
+)
