@@ -19,6 +19,15 @@ MERGED_BIN = f"$BUILD_DIR/{MERGED_BIN_FILENAME}"
 CHIP_FAMILY = BOARD_CONFIG.get("build.mcu", "esp32")
 
 
+def get_manifest_chip_family():
+    if CHIP_FAMILY == "esp32":
+        return "ESP32"
+    if CHIP_FAMILY == "esp32c3":
+        return "ESP32-C3"
+
+    return f"unrecognized-chip-family ({CHIP_FAMILY})"
+
+
 def merge_bin(source, target, env):
     # The list contains all extra images (bootloader, partitions, eboot) and
     # the final application binary
@@ -48,14 +57,13 @@ def create_esp_web_tools_manifest(source, target, env):
     firmware_path = target[0].get_abspath()
     firmware_dir = os.path.dirname(firmware_path)
     print(firmware_dir)
-    # build_part_path = board_variant + "/" + MERGED_BIN_FILENAME
 
     manifest_json_obj = {
         "name": PROJECT_ID,
         "version": "esp32",
         "builds": [
             {
-                "chipFamily": CHIP_FAMILY.upper(),
+                "chipFamily": get_manifest_chip_family(),
                 "parts": [
                     {
                         "path": MERGED_BIN_FILENAME,
