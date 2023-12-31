@@ -1,14 +1,13 @@
 # based on code and comments found here: https://github.com/platformio/platform-espressif32/issues/1078
 
 Import("env")
-import os
 import json
 
 APP_BIN = "$BUILD_DIR/${PROGNAME}.bin"
 BOARD_CONFIG = env.BoardConfig()
 # print(env.Dump())
 
-print(dir(BOARD_CONFIG))
+
 board_variant = BOARD_CONFIG.get("build.variant")
 print("MERGING FIRMWARE FOR BOARD '" + board_variant + "'")
 
@@ -44,21 +43,21 @@ def merge_bin(source, target, env):
 
 
 def create_esp_web_tools_manifest(source, target, env):
-    print("TARGET")
-    firmware_path = target[0].get_abspath()
-    firmware_dir = os.path.dirname(firmware_path)
-    print(firmware_dir)
-    build_part_path = board_variant + "/" + MERGED_BIN_FILENAME
+    # print("TARGET")
+    # firmware_path = target[0].get_abspath()
+    # firmware_dir = os.path.dirname(firmware_path)
+    # print(firmware_dir)
+    # build_part_path = board_variant + "/" + MERGED_BIN_FILENAME
 
     manifest_json_obj = {
         "name": PROJECT_ID,
         "version": "esp32",
         "builds": [
             {
-                "chipFamily": CHIP_FAMILY,
+                "chipFamily": CHIP_FAMILY.upper(),
                 "parts": [
                     {
-                        "path": build_part_path,
+                        "path": MERGED_BIN_FILENAME,
                         "offset": 0,
                     }
                 ]
@@ -77,6 +76,11 @@ def create_esp_web_tools_manifest(source, target, env):
 # Add a post action that runs esptoolpy to merge available flash images
 env.AddPostAction(APP_BIN , merge_bin)
 env.AddPostAction(APP_BIN, create_esp_web_tools_manifest)
+
+print("FLAGS")
+print(help(env.Replace))
+print(env.get("UPLOADERFLAGS"))
+print(env.Flatten(env.get("FLASH_EXTRA_IMAGES")))
 
 # Patch the upload command to flash the merged binary at address 0x0
 env.Replace(
