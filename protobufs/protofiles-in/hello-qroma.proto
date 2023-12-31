@@ -96,6 +96,14 @@ message PingResponse {
   uint32 uptime = 2;
 }
 
+message GetBoardDetailsRequest {
+  bool ignoreThis = 1;
+}
+
+message GetBoardDetailsResponse {
+  string boardName = 1;
+}
+
 
 message MyAppCommand {
   oneof command {
@@ -104,6 +112,7 @@ message MyAppCommand {
     SetUpdateConfiguration setUpdateConfiguration = 3;
     SetUpdateProgressIndicator setUpdateProgressIndicator = 4;
     PingRequest pingRequest = 5;
+    GetBoardDetailsRequest getBoardDetailsRequest = 6;
   }
 }
 
@@ -115,5 +124,6 @@ message MyAppResponse {
     SetUpdateProgressIndicatorResponse setUpdateProgressIndicatorResponse = 4;
     PingResponse pingResponse = 5;
     UpdateResponse update = 6;
+    GetBoardDetailsResponse getBoardDetailsResponse = 7;
   }
 }

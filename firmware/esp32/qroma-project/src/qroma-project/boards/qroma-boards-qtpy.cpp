@@ -1,0 +1,37 @@
+#ifdef QROMA_BOARD_DEF_QTPY_ESP32_C3
+
+#ifndef QBD_QTPY_ESP32
+#define QBD_QTPY_ESP32
+
+#include <Adafruit_NeoPixel.h>
+#include "qroma-boards.h"
+#include "../ws2812fx/qroma_init_settings.h"
+
+
+#define NUMPIXELS        1
+
+Adafruit_NeoPixel pixels(NUMPIXELS, PIN_NEOPIXEL, NEO_GRB + NEO_KHZ800);
+
+
+void setOnboardLightColor(int r, int g, int b) {
+  uint32_t color = (r << 16) + (g << 8) + b;
+
+  pixels.fill(color);
+  pixels.show();
+}
+
+
+void onInit() {
+  pixels.begin();           // INITIALIZE NeoPixel strip object (REQUIRED)
+  pixels.setBrightness(20); // not so bright
+
+  setOnboardLightColor(100, 20, 20);
+}
+
+void populateGetBoardDetailsResponse(GetBoardDetailsResponse * response) {
+  strncpy(response->boardName, "Adafruit QT Py Firmware");
+}
+
+#endif
+
+#endif
