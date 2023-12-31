@@ -47,7 +47,7 @@ def create_esp_web_tools_manifest(source, target, env):
     firmware_path = target[0].get_abspath()
     firmware_dir = os.path.dirname(firmware_path)
     print(firmware_dir)
-    manifest_json = f"""{{
+    manifest_json = f"""{{{{
   "name": "{PROJECT_ID}",
   "version": "esp32",
   "builds": [
