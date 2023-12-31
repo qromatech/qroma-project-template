@@ -5,7 +5,7 @@
 
 #include <TinyPICO.h>
 #include "qroma-boards.h"
-#include "../ws2812fx/qroma_init_settings.h"
+
 
 // Initialise the TinyPICO library
 TinyPICO tp = TinyPICO();
