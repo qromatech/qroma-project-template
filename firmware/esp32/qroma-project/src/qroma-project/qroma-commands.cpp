@@ -19,11 +19,32 @@ void onSetUpdateConfiguration(SetUpdateConfiguration * message, SetUpdateConfigu
 }
 
 
+void handleNoArgCommand(NoArgCommands noArgCommand, MyAppResponse * response) {
+  switch (noArgCommand) {
+    case NoArgCommands_Nac_NotSet:
+      logError("NoArgCommand not set");
+      break;
+    case NoArgCommands_Nac_GetBoardDetailsRequest:
+      response->which_response = MyAppResponse_getBoardDetailsResponse_tag;
+      populateGetBoardDetailsResponse(&(response->response.getBoardDetailsResponse));
+      populateBoardFirmwareDetails(&(response->response.getBoardDetailsResponse.firmwareDetails));
+      break;
+    default:
+      logError("Unrecognized NoArgCommand command");
+      logError(noArgCommand);
+      break;
+  }
+}
+
+
 void onMyAppCommand(MyAppCommand * message, MyAppResponse * response) {
   logInfo("ME APP!");
   logInfo(message->which_command);
   logInfo("<<>>");
   switch (message->which_command) {
+    case MyAppCommand_noArgCommand_tag:
+      handleNoArgCommand(message->command.noArgCommand, response);
+      break;
     case MyAppCommand_setUpdateConfiguration_tag:
       response->which_response = MyAppResponse_setUpdateConfigurationResponse_tag;
       response->response.setUpdateConfigurationResponse = SetUpdateConfigurationResponse_init_zero;
