@@ -3,6 +3,6 @@
 
 
 void populateBoardFirmwareDetails(FirmwareDetails * firmwareDetails) {
-  strncpy(response->version, LIB_VER, sizeof(response->version));
-  strncpy(response->buildTime, __DATE__ " " __TIME__, sizeof(response->buildTime));
+  strncpy(firmwareDetails->version, LIB_VER, sizeof(response->version));
+  strncpy(firmwareDetails->buildTime, __DATE__ " " __TIME__, sizeof(response->buildTime));
 }
