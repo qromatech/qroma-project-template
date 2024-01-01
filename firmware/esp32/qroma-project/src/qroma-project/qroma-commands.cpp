@@ -39,6 +39,7 @@ void onMyAppCommand(MyAppCommand * message, MyAppResponse * response) {
     case MyAppCommand_getBoardDetailsRequest_tag:
       response->which_response = MyAppResponse_getBoardDetailsResponse_tag;
       populateGetBoardDetailsResponse(&(response->response.getBoardDetailsResponse));
+      populateBoardFirmwareDetails(&(response->response.getBoardDetailsResponse.firmwareDetails));
       break;
     default:
       logError("Unrecognized MyAppCommand command");

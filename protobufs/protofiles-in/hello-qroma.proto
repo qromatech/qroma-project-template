@@ -100,30 +100,42 @@ message GetBoardDetailsRequest {
   bool ignoreThis = 1;
 }
 
+message FirmwareDetails {
+  string version = 1;
+  string buildTime = 2;
+}
+
 message GetBoardDetailsResponse {
   string boardName = 1;
+  FirmwareDetails firmwareDetails = 2;
+}
+
+enum NoArgCommands {
+  Nac_NotSet = 0;
+  Nac_GetBoardDetailsRequest = 1;
 }
 
 
 message MyAppCommand {
   oneof command {
-    HelloQromaRequest helloQromaRequest = 1;
-    MathRequest mathRequest = 2;
-    SetUpdateConfiguration setUpdateConfiguration = 3;
-    SetUpdateProgressIndicator setUpdateProgressIndicator = 4;
-    PingRequest pingRequest = 5;
-    GetBoardDetailsRequest getBoardDetailsRequest = 6;
+    NoArgCommands noArgCommand = 1;
+    HelloQromaRequest helloQromaRequest = 2;
+    MathRequest mathRequest = 3;
+    SetUpdateConfiguration setUpdateConfiguration = 4;
+    SetUpdateProgressIndicator setUpdateProgressIndicator = 5;
+    PingRequest pingRequest = 6;
+    GetBoardDetailsRequest getBoardDetailsRequest = 7;
   }
 }
 
 message MyAppResponse {
   oneof response {
-    HelloQromaResponse helloQromaResponse = 1;
-    MathResponse mathResponse = 2;
-    SetUpdateConfigurationResponse setUpdateConfigurationResponse = 3;
-    SetUpdateProgressIndicatorResponse setUpdateProgressIndicatorResponse = 4;
-    PingResponse pingResponse = 5;
-    UpdateResponse update = 6;
-    GetBoardDetailsResponse getBoardDetailsResponse = 7;
+    HelloQromaResponse helloQromaResponse = 2;
+    MathResponse mathResponse = 3;
+    SetUpdateConfigurationResponse setUpdateConfigurationResponse = 4;
+    SetUpdateProgressIndicatorResponse setUpdateProgressIndicatorResponse = 5;
+    PingResponse pingResponse = 6;
+    UpdateResponse update = 7;
+    GetBoardDetailsResponse getBoardDetailsResponse = 101;
   }
 }
