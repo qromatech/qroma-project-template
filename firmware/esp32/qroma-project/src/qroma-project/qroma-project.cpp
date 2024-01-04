@@ -42,9 +42,9 @@ int updateCounter = 0;
 
 void sendUptimeUpdateResponse() {
   MyAppResponse myAppResponse = MyAppResponse_init_zero;
-  myAppResponse.which_response = MyAppResponse_update_tag;
-  myAppResponse.response.update.which_update = UpdateResponse_uptimeUpdateResponse_tag;
-  myAppResponse.response.update.update.uptimeUpdateResponse.uptime = millis();
+  myAppResponse.which_response = MyAppResponse_updateResponse_tag;
+  myAppResponse.response.updateResponse.which_update = UpdateResponse_uptimeUpdateResponse_tag;
+  myAppResponse.response.updateResponse.update.uptimeUpdateResponse.uptime = millis();
 
   myQromaApp.sendQromaAppResponse<MyAppResponse, MyAppResponse_fields>(&myAppResponse);
 
@@ -53,13 +53,13 @@ void sendUptimeUpdateResponse() {
 
 void sendProgressUpdateResponse() {
   MyAppResponse myAppResponse = MyAppResponse_init_zero;
-  myAppResponse.which_response = MyAppResponse_update_tag;
-  myAppResponse.response.update.which_update = UpdateResponse_progressIndicatorUpdateResponse_tag;
+  myAppResponse.which_response = MyAppResponse_updateResponse_tag;
+  myAppResponse.response.updateResponse.which_update = UpdateResponse_progressIndicatorUpdateResponse_tag;
 
-  myAppResponse.response.update.update.progressIndicatorUpdateResponse.progressIndicator[0] = '.';
+  myAppResponse.response.updateResponse.update.progressIndicatorUpdateResponse.progressIndicator[0] = '.';
   int dotCount = updateCounter % 45;
   for (int i=1; i < dotCount; i++) {
-    myAppResponse.response.update.update.progressIndicatorUpdateResponse.progressIndicator[i] = '.';
+    myAppResponse.response.updateResponse.update.progressIndicatorUpdateResponse.progressIndicator[i] = '.';
   }
 
   myQromaApp.sendQromaAppResponse<MyAppResponse, MyAppResponse_fields>(&myAppResponse);

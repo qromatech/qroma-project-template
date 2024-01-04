@@ -31,6 +31,12 @@ void populateGetBoardDetailsResponse(GetBoardDetailsResponse * response) {
   strncpy(response->boardName, "Adafruit QT Py Firmware", sizeof(response->boardName));
 }
 
+
+void handleSetBoardLightColorRequest(SetBoardLightColorRequest * request, SetBoardLightColorResponse * response) {
+  response->success = true;
+  setOnboardLightColor(request->red, request->green, request->blue);
+}
+
 #endif
 
 #endif

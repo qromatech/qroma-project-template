@@ -62,6 +62,11 @@ void onMyAppCommand(MyAppCommand * message, MyAppResponse * response) {
       populateGetBoardDetailsResponse(&(response->response.getBoardDetailsResponse));
       populateBoardFirmwareDetails(&(response->response.getBoardDetailsResponse.firmwareDetails));
       break;
+    case MyAppCommand_setBoardLightColorRequest_tag:
+      response->which_response = MyAppResponse_setBoardLightColorResponse_tag;
+      handleSetBoardLightColorRequest(&(message->command.setBoardLightColorRequest), 
+        (&(response->response.setBoardLightColorResponse)));
+      break;
     default:
       logError("Unrecognized MyAppCommand command");
       logError(message->which_command);

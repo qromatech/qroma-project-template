@@ -25,6 +25,12 @@ void populateGetBoardDetailsResponse(GetBoardDetailsResponse * response) {
 }
 
 
+void handleSetBoardLightColorRequest(SetBoardLightColorRequest * request, SetBoardLightColorResponse * response) {
+  response->success = true;
+  setOnboardLightColor(request->red, request->green, request->blue);
+}
+
+
 #endif
 
 #endif

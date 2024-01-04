@@ -7,6 +7,7 @@ extern void onInit();
 
 extern void populateGetBoardDetailsResponse(GetBoardDetailsResponse * config);
 extern void populateBoardFirmwareDetails(FirmwareDetails * firmwareDetails);
+extern void handleSetBoardLightColorRequest(SetBoardLightColorRequest * request, SetBoardLightColorResponse * response);
 
 
 #endif

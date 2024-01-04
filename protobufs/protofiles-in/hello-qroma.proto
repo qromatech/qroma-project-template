@@ -110,9 +110,20 @@ message GetBoardDetailsResponse {
   FirmwareDetails firmwareDetails = 2;
 }
 
+message SetBoardLightColorRequest {
+  uint32 red = 1;
+  uint32 green = 2;
+  uint32 blue = 3;
+}
+
+message SetBoardLightColorResponse {
+  bool success = 1;
+  string message = 2;
+}
+
 enum NoArgCommands {
   Nac_NotSet = 0;
-  Nac_GetBoardDetailsRequest = 1;
+  Nac_GetBoardDetailsRequest = 101;
 }
 
 
@@ -125,6 +136,7 @@ message MyAppCommand {
     SetUpdateProgressIndicator setUpdateProgressIndicator = 5;
     PingRequest pingRequest = 6;
     GetBoardDetailsRequest getBoardDetailsRequest = 7;
+    SetBoardLightColorRequest setBoardLightColorRequest = 8;
   }
 }
 
@@ -135,7 +147,8 @@ message MyAppResponse {
     SetUpdateConfigurationResponse setUpdateConfigurationResponse = 4;
     SetUpdateProgressIndicatorResponse setUpdateProgressIndicatorResponse = 5;
     PingResponse pingResponse = 6;
-    UpdateResponse update = 7;
+    UpdateResponse updateResponse = 7;
+    SetBoardLightColorResponse setBoardLightColorResponse = 8;
     GetBoardDetailsResponse getBoardDetailsResponse = 101;
   }
 }

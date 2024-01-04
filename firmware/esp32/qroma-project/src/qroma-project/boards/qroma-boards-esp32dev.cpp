@@ -13,6 +13,12 @@ void populateGetBoardDetailsResponse(GetBoardDetailsResponse * response) {
 }
 
 
+void handleSetBoardLightColorRequest(SetBoardLightColorRequest * request, SetBoardLightColorResponse * response) {
+  response->success = false;
+  strncpy(response->message, "ESP 32 Dev Board doesn't support setting color", sizeof(response->message));
+}
+
+
 #endif
 
 #endif
