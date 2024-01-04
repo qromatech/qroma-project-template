@@ -26,6 +26,7 @@ void handleNoArgCommand(NoArgCommands noArgCommand, MyAppResponse * response) {
       break;
     case NoArgCommands_Nac_GetBoardDetailsRequest:
       response->which_response = MyAppResponse_getBoardDetailsResponse_tag;
+      response->response.getBoardDetailsResponse = GetBoardDetailsResponse_init_zero;
       populateGetBoardDetailsResponse(&(response->response.getBoardDetailsResponse));
       populateBoardFirmwareDetails(&(response->response.getBoardDetailsResponse.firmwareDetails));
       break;
@@ -59,11 +60,13 @@ void onMyAppCommand(MyAppCommand * message, MyAppResponse * response) {
       break;
     case MyAppCommand_getBoardDetailsRequest_tag:
       response->which_response = MyAppResponse_getBoardDetailsResponse_tag;
+      response->response.getBoardDetailsResponse = GetBoardDetailsResponse_init_zero;
       populateGetBoardDetailsResponse(&(response->response.getBoardDetailsResponse));
       populateBoardFirmwareDetails(&(response->response.getBoardDetailsResponse.firmwareDetails));
       break;
     case MyAppCommand_setBoardLightColorRequest_tag:
       response->which_response = MyAppResponse_setBoardLightColorResponse_tag;
+      response->response.setBoardLightColorResponse = SetBoardLightColorResponse_init_zero;
       handleSetBoardLightColorRequest(&(message->command.setBoardLightColorRequest), 
         (&(response->response.setBoardLightColorResponse)));
       break;
