@@ -123,7 +123,7 @@ message SetBoardLightColorResponse {
 
 enum NoArgCommands {
   Nac_NotSet = 0;
-  Nac_GetBoardDetailsRequest = 101;
+  Nac_GetBoardDetailsRequest = 1;
 }
 
 
@@ -149,6 +149,6 @@ message MyAppResponse {
     PingResponse pingResponse = 6;
     UpdateResponse updateResponse = 7;
     SetBoardLightColorResponse setBoardLightColorResponse = 8;
-    GetBoardDetailsResponse getBoardDetailsResponse = 101;
+    GetBoardDetailsResponse getBoardDetailsResponse = 9;
   }
 }
