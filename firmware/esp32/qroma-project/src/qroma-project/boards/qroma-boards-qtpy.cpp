@@ -34,6 +34,7 @@ void populateGetBoardDetailsResponse(GetBoardDetailsResponse * response) {
 
 void handleSetBoardLightColorRequest(SetBoardLightColorRequest * request, SetBoardLightColorResponse * response) {
   response->success = true;
+  strncpy(response->message, "", sizeof(response->message));
   setOnboardLightColor(request->red, request->green, request->blue);
 }
 
