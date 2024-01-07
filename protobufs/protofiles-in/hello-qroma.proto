@@ -127,8 +127,7 @@ enum NoArgCommands {
 }
 
 message InvalidCommandResponse {
-  bool unhandled = 1;
-  string message = 2;
+  string message = 1;
 }
 
 
