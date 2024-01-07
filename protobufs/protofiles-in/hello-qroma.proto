@@ -126,6 +126,11 @@ enum NoArgCommands {
   Nac_GetBoardDetailsRequest = 1;
 }
 
+message InvalidCommandResponse {
+  bool unhandled = 1;
+  string message = 2;
+}
+
 
 message MyAppCommand {
   oneof command {
@@ -142,6 +147,7 @@ message MyAppCommand {
 
 message MyAppResponse {
   oneof response {
+    InvalidCommandResponse invalidCommandResponse = 1;
     HelloQromaResponse helloQromaResponse = 2;
     MathResponse mathResponse = 3;
     SetUpdateConfigurationResponse setUpdateConfigurationResponse = 4;

@@ -25,6 +25,7 @@ void handleNoArgCommand(NoArgCommands noArgCommand, MyAppResponse * response) {
       logError("NoArgCommand not set");
       break;
     case NoArgCommands_Nac_GetBoardDetailsRequest:
+      response->which_response = MyAppResponse_getBoardDetailsResponse_tag;
       populateGetBoardDetailsResponse(&(response->response.getBoardDetailsResponse));
       populateBoardFirmwareDetails(&(response->response.getBoardDetailsResponse.firmwareDetails));
       break;
@@ -40,6 +41,12 @@ void onMyAppCommand(MyAppCommand * message, MyAppResponse * response) {
   logInfo("ME APP!");
   logInfo(message->which_command);
   logInfo("<<>>");
+
+  response->which_response = MyAppResponse_invalidCommandResponse_tag;
+  strncpy(response->response.invalidCommandResponse.message,
+    "Unrecognized or unhandled app command",
+    sizeof(response->response.invalidCommandResponse.message));
+
   switch (message->which_command) {
     case MyAppCommand_noArgCommand_tag:
       handleNoArgCommand(message->command.noArgCommand, response);
