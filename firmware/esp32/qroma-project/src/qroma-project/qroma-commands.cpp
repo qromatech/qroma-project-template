@@ -42,10 +42,9 @@ void onMyAppCommand(MyAppCommand * message, MyAppResponse * response) {
   logInfo(message->which_command);
   logInfo("<<>>");
 
+  // set this so that handler implementations are flagged if they forget to set
+  // the response as part of their logic
   response->which_response = MyAppResponse_invalidCommandResponse_tag;
-  strncpy(response->response.invalidCommandResponse.message,
-    "Unrecognized or unhandled app command",
-    sizeof(response->response.invalidCommandResponse.message));
 
   switch (message->which_command) {
     case MyAppCommand_noArgCommand_tag:
@@ -77,5 +76,11 @@ void onMyAppCommand(MyAppCommand * message, MyAppResponse * response) {
       logError("Unrecognized MyAppCommand command");
       logError(message->which_command);
       break;
+  }
+
+  if (response->which_response == MyAppResponse_invalidCommandResponse_tag) {
+    strncpy(response->response.invalidCommandResponse.message,
+      "Unrecognized or unhandled app command",
+      sizeof(response->response.invalidCommandResponse.message));
   }
 }
