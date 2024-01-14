@@ -5,7 +5,7 @@ title: Monitor Device
 # Monitor Device
 
 import BrowserOnly from '@docusaurus/BrowserOnly';
-import { MyAppResponse } from "../qroma-proto/hello-qroma";
+import { MyAppResponse } from "../qroma-proto/my-project-messages";
 import { QromaCommMonitor } from "../react-qroma-lib";
 
 

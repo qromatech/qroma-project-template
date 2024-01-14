@@ -1,7 +1,7 @@
 #ifndef QROMA_BOARD_H
 #define QROMA_BOARD_H
 
-#include <qroma-proto/hello-qroma.pb.h>
+#include <qroma-proto/my-project-messages.pb.h>
 
 extern void onInit();
 
