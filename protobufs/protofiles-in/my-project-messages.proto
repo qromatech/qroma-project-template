@@ -101,8 +101,9 @@ message GetBoardDetailsRequest {
 }
 
 message FirmwareDetails {
-  string version = 1;
-  string buildTime = 2;
+  string projectName = 1;
+  string version = 2;
+  string buildTime = 3;
 }
 
 message GetBoardDetailsResponse {
