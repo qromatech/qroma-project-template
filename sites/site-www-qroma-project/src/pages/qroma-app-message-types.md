@@ -6,10 +6,10 @@ title: Qroma Comm Types
 
 Introspection stuff for declared types goes here...
   
-import { MyAppCommand, MyAppResponse } from "../qroma-proto/my-project-messages";
+import { MyProjectCommand, MyProjectResponse } from "../qroma-proto/my-project-messages";
 import { QromaAppViewMessageTypesComponent } from "../react-qroma-lib";
 
 
 <QromaAppViewMessageTypesComponent
-  messages={MyAppCommand}
+  messages={MyProjectCommand}
   />

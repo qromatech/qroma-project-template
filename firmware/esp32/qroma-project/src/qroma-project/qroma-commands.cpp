@@ -37,7 +37,7 @@ void handleNoArgCommand(NoArgCommands noArgCommand, MyAppResponse * response) {
 }
 
 
-void onMyAppCommand(MyAppCommand * message, MyAppResponse * response) {
+void onMyProjectCommand(MyProjectCommand * message, MyAppResponse * response) {
   logInfo("ME APP!");
   logInfo(message->which_command);
   logInfo("<<>>");
@@ -47,40 +47,40 @@ void onMyAppCommand(MyAppCommand * message, MyAppResponse * response) {
   response->which_response = MyAppResponse_invalidCommandResponse_tag;
 
   switch (message->which_command) {
-    case MyAppCommand_noArgCommand_tag:
+    case MyProjectCommand_noArgCommand_tag:
       handleNoArgCommand(message->command.noArgCommand, response);
       break;
-    case MyAppCommand_setUpdateConfiguration_tag:
+    case MyProjectCommand_setUpdateConfiguration_tag:
       response->which_response = MyAppResponse_setUpdateConfigurationResponse_tag;
       response->response.setUpdateConfigurationResponse = SetUpdateConfigurationResponse_init_zero;
       onSetUpdateConfiguration(&(message->command.setUpdateConfiguration),
         &(response->response.setUpdateConfigurationResponse));
       break;
-    case MyAppCommand_pingRequest_tag:
+    case MyProjectCommand_pingRequest_tag:
       response->which_response = MyAppResponse_pingResponse_tag;
       response->response.pingResponse = PingResponse_init_zero;
       response->response.pingResponse.pingId = message->command.pingRequest.pingId;
       response->response.pingResponse.uptime = millis();
       break;
-    case MyAppCommand_getBoardDetailsRequest_tag:
+    case MyProjectCommand_getBoardDetailsRequest_tag:
       response->which_response = MyAppResponse_getBoardDetailsResponse_tag;
       populateGetBoardDetailsResponse(&(response->response.getBoardDetailsResponse));
       populateBoardFirmwareDetails(&(response->response.getBoardDetailsResponse.firmwareDetails));
       break;
-    case MyAppCommand_setBoardLightColorRequest_tag:
+    case MyProjectCommand_setBoardLightColorRequest_tag:
       response->which_response = MyAppResponse_setBoardLightColorResponse_tag;
       handleSetBoardLightColorRequest(&(message->command.setBoardLightColorRequest), 
         (&(response->response.setBoardLightColorResponse)));
       break;
     default:
-      logError("Unrecognized MyAppCommand command");
+      logError("Unrecognized MyProjectCommand command");
       logError(message->which_command);
       break;
   }
 
-  if (response->which_response == MyAppResponse_invalidCommandResponse_tag) {
+  if (response->which_response == MyProjectResponse_invalidCommandResponse_tag) {
     strncpy(response->response.invalidCommandResponse.message,
-      "Unrecognized or unhandled app command",
+      "Unrecognized or unhandled project command",
       sizeof(response->response.invalidCommandResponse.message));
   }
 }

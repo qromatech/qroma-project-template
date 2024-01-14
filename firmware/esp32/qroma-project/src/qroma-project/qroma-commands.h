@@ -3,6 +3,6 @@
 
 #include <qroma-proto/my-project-messages.pb.h>
 
-void onMyAppCommand(MyAppCommand * message, MyAppResponse * hqr);
+void onMyProjectCommand(MyProjectCommand * message, MyProjectResponse * response);
 
 #endif

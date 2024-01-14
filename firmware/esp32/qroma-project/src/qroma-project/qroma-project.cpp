@@ -4,9 +4,9 @@
 
 
 AppCommandProcessor<
-  MyAppCommand, MyAppCommand_fields,
-  MyAppResponse, MyAppResponse_fields
-> myAppCommandProcessor(onMyAppCommand);
+  MyProjectCommand, MyProjectCommand_fields,
+  MyProjectResponse, MyProjectResponse_fields
+> myAppCommandProcessor(onMyProjectCommand);
 
 QromaSerialCommApp myQromaApp;
 

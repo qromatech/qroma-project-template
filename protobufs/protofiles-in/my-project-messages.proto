@@ -132,7 +132,7 @@ message InvalidCommandResponse {
 }
 
 
-message MyAppCommand {
+message MyProjectCommand {
   oneof command {
     NoArgCommands noArgCommand = 1;
     HelloQromaRequest helloQromaRequest = 2;
@@ -145,7 +145,7 @@ message MyAppCommand {
   }
 }
 
-message MyAppResponse {
+message MyProjectResponse {
   oneof response {
     InvalidCommandResponse invalidCommandResponse = 1;
     HelloQromaResponse helloQromaResponse = 2;
