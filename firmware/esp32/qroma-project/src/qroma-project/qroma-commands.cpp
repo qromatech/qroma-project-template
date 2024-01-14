@@ -19,13 +19,13 @@ void onSetUpdateConfiguration(SetUpdateConfiguration * message, SetUpdateConfigu
 }
 
 
-void handleNoArgCommand(NoArgCommands noArgCommand, MyAppResponse * response) {
+void handleNoArgCommand(NoArgCommands noArgCommand, MyProjectResponse * response) {
   switch (noArgCommand) {
     case NoArgCommands_Nac_NotSet:
       logError("NoArgCommand not set");
       break;
     case NoArgCommands_Nac_GetBoardDetailsRequest:
-      response->which_response = MyAppResponse_getBoardDetailsResponse_tag;
+      response->which_response = MyProjectResponse_getBoardDetailsResponse_tag;
       populateGetBoardDetailsResponse(&(response->response.getBoardDetailsResponse));
       populateBoardFirmwareDetails(&(response->response.getBoardDetailsResponse.firmwareDetails));
       break;
@@ -37,38 +37,38 @@ void handleNoArgCommand(NoArgCommands noArgCommand, MyAppResponse * response) {
 }
 
 
-void onMyProjectCommand(MyProjectCommand * message, MyAppResponse * response) {
+void onMyProjectCommand(MyProjectCommand * message, MyProjectResponse * response) {
   logInfo("ME APP!");
   logInfo(message->which_command);
   logInfo("<<>>");
 
   // set this so that handler implementations are flagged if they forget to set
   // the response as part of their logic
-  response->which_response = MyAppResponse_invalidCommandResponse_tag;
+  response->which_response = MyProjectResponse_invalidCommandResponse_tag;
 
   switch (message->which_command) {
     case MyProjectCommand_noArgCommand_tag:
       handleNoArgCommand(message->command.noArgCommand, response);
       break;
     case MyProjectCommand_setUpdateConfiguration_tag:
-      response->which_response = MyAppResponse_setUpdateConfigurationResponse_tag;
+      response->which_response = MyProjectResponse_setUpdateConfigurationResponse_tag;
       response->response.setUpdateConfigurationResponse = SetUpdateConfigurationResponse_init_zero;
       onSetUpdateConfiguration(&(message->command.setUpdateConfiguration),
         &(response->response.setUpdateConfigurationResponse));
       break;
     case MyProjectCommand_pingRequest_tag:
-      response->which_response = MyAppResponse_pingResponse_tag;
+      response->which_response = MyProjectResponse_pingResponse_tag;
       response->response.pingResponse = PingResponse_init_zero;
       response->response.pingResponse.pingId = message->command.pingRequest.pingId;
       response->response.pingResponse.uptime = millis();
       break;
     case MyProjectCommand_getBoardDetailsRequest_tag:
-      response->which_response = MyAppResponse_getBoardDetailsResponse_tag;
+      response->which_response = MyProjectResponse_getBoardDetailsResponse_tag;
       populateGetBoardDetailsResponse(&(response->response.getBoardDetailsResponse));
       populateBoardFirmwareDetails(&(response->response.getBoardDetailsResponse.firmwareDetails));
       break;
     case MyProjectCommand_setBoardLightColorRequest_tag:
-      response->which_response = MyAppResponse_setBoardLightColorResponse_tag;
+      response->which_response = MyProjectResponse_setBoardLightColorResponse_tag;
       handleSetBoardLightColorRequest(&(message->command.setBoardLightColorRequest), 
         (&(response->response.setBoardLightColorResponse)));
       break;
