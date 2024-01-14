@@ -8,10 +8,9 @@
 
 void onInit() { }
 
-void populateGetBoardDetailsResponse(GetBoardDetailsResponse * response) {
-  strncpy(response->boardName, "ESP 32 Dev Board Firmware", sizeof(response->boardName));
+const char * getBoardName() {
+  return "ESP 32 Dev Board Firmware";
 }
-
 
 void handleSetBoardLightColorRequest(SetBoardLightColorRequest * request, SetBoardLightColorResponse * response) {
   response->success = false;

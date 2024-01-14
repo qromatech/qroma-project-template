@@ -4,9 +4,9 @@
 #include <qroma-proto/my-project-messages.pb.h>
 
 extern void onInit();
+extern const char * getBoardName();
 
-extern void populateGetBoardDetailsResponse(GetBoardDetailsResponse * config);
-extern void populateBoardFirmwareDetails(FirmwareDetails * firmwareDetails);
+void populateGetBoardDetailsResponse(GetBoardDetailsResponse * config);
 extern void handleSetBoardLightColorRequest(SetBoardLightColorRequest * request, SetBoardLightColorResponse * response);
 
 

@@ -27,7 +27,6 @@ void handleNoArgCommand(NoArgCommands noArgCommand, MyProjectResponse * response
     case NoArgCommands_Nac_GetBoardDetailsRequest:
       response->which_response = MyProjectResponse_getBoardDetailsResponse_tag;
       populateGetBoardDetailsResponse(&(response->response.getBoardDetailsResponse));
-      populateBoardFirmwareDetails(&(response->response.getBoardDetailsResponse.firmwareDetails));
       break;
     default:
       logError("Unrecognized NoArgCommand command");
@@ -65,7 +64,6 @@ void onMyProjectCommand(MyProjectCommand * message, MyProjectResponse * response
     case MyProjectCommand_getBoardDetailsRequest_tag:
       response->which_response = MyProjectResponse_getBoardDetailsResponse_tag;
       populateGetBoardDetailsResponse(&(response->response.getBoardDetailsResponse));
-      populateBoardFirmwareDetails(&(response->response.getBoardDetailsResponse.firmwareDetails));
       break;
     case MyProjectCommand_setBoardLightColorRequest_tag:
       response->which_response = MyProjectResponse_setBoardLightColorResponse_tag;

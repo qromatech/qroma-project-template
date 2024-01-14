@@ -2,8 +2,13 @@
 #include "../lib_ver.h"
 
 
-void populateBoardFirmwareDetails(FirmwareDetails * firmwareDetails) {
-  strncpy(firmwareDetails->projectName, QROMA_PROJECT_NAME, sizeof(firmwareDetails->projectName));
-  strncpy(firmwareDetails->version, LIB_VER, sizeof(firmwareDetails->version));
-  strncpy(firmwareDetails->buildTime, __DATE__ " " __TIME__, sizeof(firmwareDetails->buildTime));
+void populateGetBoardDetailsResponse(GetBoardDetailsResponse * response) {
+  response->has_projectDetails = true;
+  response->has_firmwareDetails = true;
+
+  strncpy(response->projectDetails.projectName, QROMA_PROJECT_NAME, sizeof(response->projectDetails.projectName));
+
+  strncpy(response->firmwareDetails.version, LIB_VER, sizeof(response->firmwareDetails.version));
+  strncpy(response->firmwareDetails.buildTime, __DATE__ " " __TIME__, sizeof(response->firmwareDetails.buildTime));
+  strncpy(response->firmwareDetails.boardName, getBoardName(), sizeof(response->firmwareDetails.boardName));
 }

@@ -96,20 +96,26 @@ message PingResponse {
   uint32 uptime = 2;
 }
 
+
+message MyProjectDetails {
+  string projectName = 1;
+}
+
+message FirmwareDetails {
+  string version = 1;
+  string buildTime = 2;
+  string boardName = 3;
+}
+
 message GetBoardDetailsRequest {
   bool ignoreThis = 1;
 }
 
-message FirmwareDetails {
-  string projectName = 1;
-  string version = 2;
-  string buildTime = 3;
-}
-
 message GetBoardDetailsResponse {
-  string boardName = 1;
+  MyProjectDetails projectDetails = 1;
   FirmwareDetails firmwareDetails = 2;
 }
+
 
 message SetBoardLightColorRequest {
   uint32 red = 1;

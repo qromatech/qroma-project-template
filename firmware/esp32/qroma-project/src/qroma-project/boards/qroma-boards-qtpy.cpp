@@ -27,8 +27,8 @@ void onInit() {
   setOnboardLightColor(100, 20, 20);
 }
 
-void populateGetBoardDetailsResponse(GetBoardDetailsResponse * response) {
-  strncpy(response->boardName, "Adafruit QT Py Firmware", sizeof(response->boardName));
+const char * getBoardName() {
+  return "Adafruit QT Py Firmware";
 }
 
 

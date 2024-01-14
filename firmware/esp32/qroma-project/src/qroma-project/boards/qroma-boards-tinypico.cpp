@@ -19,9 +19,8 @@ void onInit() {
   setOnboardLightColor(0, 60, 100);
 }
 
-
-void populateGetBoardDetailsResponse(GetBoardDetailsResponse * response) {
-  strncpy(response->boardName, "UM TinyPICO Firmware", sizeof(response->boardName));
+const char * getBoardName() {
+  return "UM TinyPICO Firmware";
 }
 
 
