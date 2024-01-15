@@ -1,25 +1,26 @@
 
 export default {
-  advancedIoSidebar: [
+  getStartedSidebar: [
     {
       type: 'category',
-      label: 'Advanced',
+      label: 'Get Started',
       items: [
         {
           type: 'doc',
-          id: 'qroma-app-message-types',
+          id: 'audience',
         },
         {
           type: 'doc',
-          id: 'monitor-device',
+          id: 'overview',
         },
         {
           type: 'doc',
-          id: 'command-device',
+          id: 'install-firmware',
         },
         {
-          type: 'doc',
-          id: 'filesystem',
+          type: 'link',
+          href: "/docs/intro",
+          label: "Project Documentation",
         },
       ],
     }

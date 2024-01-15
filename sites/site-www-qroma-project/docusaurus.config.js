@@ -10,14 +10,14 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://your-qroma-project-landing-page.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/{{ qroma_project.project_id }}/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: '{{ qroma_project.project_id }}', // Usually your GitHub org/user name.
+  organizationName: 'my-github-user-or-org-name', // Usually your GitHub org/user name.
   projectName: '{{ qroma_project.project_id }}', // Usually your repo name.
 
   onBrokenLinks: 'throw',
@@ -40,6 +40,12 @@ const config = {
   ],
 
   plugins: [
+    ['@docusaurus/plugin-content-docs', {
+      id: 'advanced',
+      path: 'src/advanced-io',
+      routeBasePath: 'advanced-io',
+      sidebarPath: require.resolve('./sidebar-advanced.js'),
+    }],
     ['@docusaurus/plugin-content-docs', {
       id: 'advanced',
       path: 'src/advanced-io',
@@ -81,13 +87,13 @@ const config = {
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
         title: '{{qroma_project.project_id}}',
-//        logo: {
-//          alt: 'Project Logo',
-//          src: 'img/logo.svg',
-//        },
+        logo: {
+          alt: 'Project Logo',
+          src: 'img/qromatech-logo-white.png',
+        },
         items: [
           {to: '/licenses', label: 'Licenses', position: 'left'},
-          {to: '/install-firmware', label: 'Install Firmware', position: 'left'},
+          {to: '/get-started', label: 'Get Started', position: 'left'},
           {to: '/command-device', label: 'Command Device', position: 'left'},
           {
             to: '/advanced-io',
@@ -109,46 +115,23 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
-            ],
+            label: 'Blog',
+            to: '/blog',
           },
           {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
-              },
-            ],
+            label: 'Project Overview',
+            to: '/get-started/overview',
           },
           {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
-              },
-            ],
+            label: 'Project Docs',
+            to: '/docs',
+          },
+          {
+            label: 'GitHub',
+            href: 'https://github.com/my-github-user-or-org-name/{{ qroma_project.project_id }}',
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright � ${new Date().getFullYear()} {{ qroma_project.project_id }} - built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,
