@@ -131,7 +131,7 @@ const config = {
             href: 'https://github.com/my-github-user-or-org-name/{{ qroma_project.project_id }}',
           },
         ],
-        copyright: `Copyright � ${new Date().getFullYear()} {{ qroma_project.project_id }} - built with Docusaurus.`,
+        copyright: `Copyright ${new Date().getFullYear()} {{ qroma_project.project_id }} - built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,
