@@ -69,13 +69,19 @@
   font-family: 'Exo';
   font-weight: bold;
   color: white;
-  /* font-size: 40px; */
 }
 
 .hero__subtitle {
   font-family: 'Exo';
   font-weight: bold;
   color: rgb(183, 81, 158);
+}
+
+.qroma__tagline {
+  font-family: 'Exo';
+  font-weight: bold;
+  color: rgb(183, 81, 158);
+  font-size: medium;
 }
 
 .pagination-nav {

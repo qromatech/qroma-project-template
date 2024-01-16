@@ -5,8 +5,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: '{{qroma_project.project_id}}',
-  tagline: 'Embedded device development and deployment. Streamlined. Simplified.',
+  title: '{{qroma_project.project_id}} (a qroma project)',
+  tagline: '{{qroma_project.project_id}} - an awesome qroma.dev project',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -115,12 +115,12 @@ const config = {
         style: 'dark',
         links: [
           {
-            label: 'Blog',
-            to: '/blog',
+            label: 'Overview',
+            to: '/get-started/overview',
           },
           {
-            label: 'Project Overview',
-            to: '/get-started/overview',
+            label: 'Blog',
+            to: '/blog',
           },
           {
             label: 'Project Docs',
@@ -129,6 +129,10 @@ const config = {
           {
             label: 'GitHub',
             href: 'https://github.com/my-github-user-or-org-name/{{ qroma_project.project_id }}',
+          },
+          {
+            href: 'https://qroma.dev',
+            label: 'qroma.dev',
           },
         ],
         copyright: `Copyright ${new Date().getFullYear()} {{ qroma_project.project_id }} - built with Docusaurus.`,
