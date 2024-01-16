@@ -5,7 +5,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: '{{qroma_project.project_id}} (a qroma project)',
+  title: '{{qroma_project.project_id}}',
   tagline: '{{qroma_project.project_id}} - an awesome qroma.dev project',
   favicon: 'img/favicon.ico',
 

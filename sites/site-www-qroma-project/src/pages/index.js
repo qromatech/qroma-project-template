@@ -53,7 +53,7 @@ export default function Home() {
 
   return (
     <Layout
-      title={`${siteConfig.title}`}
+      title={`${siteConfig.title} (a qroma project)`}
       description="Description will go into a meta tag in <head />">
       <HomepageHeader />
       <main>
