@@ -1,3 +1,5 @@
+#include <Esp.h>
+#include <fs.h>
 #include "qroma-commands.h"
 #include "qroma/qroma.h"
 #include "boards/qroma-boards.h"
@@ -19,6 +21,11 @@ void onSetUpdateConfiguration(SetUpdateConfiguration * message, SetUpdateConfigu
 }
 
 
+void onLoadBoardConfiguration(LoadBoardConfigurationResponse * response) {
+  // response->response.loadBoardConfigurationResponse.success = resetFilesystem();
+}
+
+
 void handleNoArgCommand(NoArgCommands noArgCommand, MyProjectResponse * response) {
   switch (noArgCommand) {
     case NoArgCommands_Nac_NotSet:
@@ -27,6 +34,19 @@ void handleNoArgCommand(NoArgCommands noArgCommand, MyProjectResponse * response
     case NoArgCommands_Nac_GetBoardDetailsRequest:
       response->which_response = MyProjectResponse_getBoardDetailsResponse_tag;
       populateGetBoardDetailsResponse(&(response->response.getBoardDetailsResponse));
+      break;
+    case NoArgCommands_Nac_LoadBoardConfiguration:
+      response->which_response = MyProjectResponse_loadBoardConfigurationResponse_tag;
+      onLoadBoardConfiguration(&(response->response.loadBoardConfigurationResponse));
+      logError("Not implemented: LoadBoardConfiguration command");
+      break;
+    case NoArgCommands_Nac_ResetFilesystem:
+      response->which_response = MyProjectResponse_resetFilesystemResponse_tag;
+      response->response.resetFilesystemResponse.success = resetFilesystem();
+      break;
+    case NoArgCommands_Nac_RestartDevice:
+      // no response to be forthcoming
+      ESP.restart();
       break;
     default:
       logError("Unrecognized NoArgCommand command");
@@ -48,6 +68,20 @@ void onMyProjectCommand(MyProjectCommand * message, MyProjectResponse * response
   switch (message->which_command) {
     case MyProjectCommand_noArgCommand_tag:
       handleNoArgCommand(message->command.noArgCommand, response);
+      break;
+    case MyProjectCommand_helloQromaRequest_tag:
+      response->which_response = MyProjectResponse_helloQromaResponse_tag;
+      response->response.helloQromaResponse = HelloQromaResponse_init_zero;
+      logError("Not implemented: HelloQromaRequest command");
+      // onSetUpdateConfiguration(&(message->command.setUpdateConfiguration),
+      //   &(response->response.setUpdateConfigurationResponse));
+      break;
+    case MyProjectCommand_mathRequest_tag:
+      response->which_response = MyProjectResponse_mathResponse_tag;
+      response->response.mathResponse = MathResponse_init_zero;
+      logError("Not implemented: MathRequest command");
+      // onSetUpdateConfiguration(&(message->command.setUpdateConfiguration),
+      //   &(response->response.setUpdateConfigurationResponse));
       break;
     case MyProjectCommand_setUpdateConfiguration_tag:
       response->which_response = MyProjectResponse_setUpdateConfigurationResponse_tag;
