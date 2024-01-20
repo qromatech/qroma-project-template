@@ -10,7 +10,7 @@ AppCommandProcessor<
 
 QromaSerialCommApp myQromaApp;
 
-extern SetUpdateConfiguration updateConfiguration;
+extern FwUpdateConfiguration updateConfiguration;
 
 
 void qromaProjectSetup()

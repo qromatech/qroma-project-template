@@ -5,24 +5,51 @@
 #include "boards/qroma-boards.h"
 
 
-SetUpdateConfiguration updateConfiguration = SetUpdateConfiguration_init_zero; 
+const char * QROMA_BOARDS_UPDATE_CONFIG_FILENAME = "/qroma-boards.config";
+FwUpdateConfiguration updateConfiguration = SetUpdateConfiguration_init_zero; 
 
 
 void onSetUpdateConfiguration(SetUpdateConfiguration * message, SetUpdateConfigurationResponse * response) {
-  if (message->updateIntervalInMs < 10 || message->updateIntervalInMs > 60000) {
+  if (!message->has_updateConfiguration) {
+    response->success = false;
+  }
+
+  if (message->updateConfiguration.updateType < 10 || message->updateConfiguration.updateIntervalInMs > 60000) {
     response->success = false;
     return;
   }
 
-  updateConfiguration.updateType = message->updateType;
-  updateConfiguration.updateIntervalInMs = message->updateIntervalInMs;
+  updateConfiguration.updateType = message->updateConfiguration.updateType;
+  updateConfiguration.updateIntervalInMs = message->updateConfiguration.updateIntervalInMs;
+
+  if (message->saveConfiguration) {
+    bool saved = savePbToPersistence(&updateConfiguration, QROMA_BOARDS_UPDATE_CONFIG_FILENAME, SetUpdateConfiguration_fields);
+    response->success = saved;
+
+  } else {
+    response->success = true;
+  }
   
-  response->success = true;
 }
 
 
 void onLoadBoardConfiguration(LoadBoardConfigurationResponse * response) {
-  // response->response.loadBoardConfigurationResponse.success = resetFilesystem();
+  response->has_loadedConfiguration = true;
+
+  response->loadedConfiguration.updateIntervalInMs = updateConfiguration.updateIntervalInMs;
+  response->loadedConfiguration.updateType = updateConfiguration.updateType;
+}
+
+
+void onHelloQromaRequest(HelloQromaRequest * request, HelloQromaResponse * response) {
+  // logError("Not implemented: HelloQromaRequest command");
+}
+
+
+void onMathRequest(MathRequest * request, MathResponse * response) {
+  // response->response.mathResponse = MathResponse_init_zero;
+  logError("Not implemented: MathRequest command");
+
 }
 
 
@@ -31,23 +58,23 @@ void handleNoArgCommand(NoArgCommands noArgCommand, MyProjectResponse * response
     case NoArgCommands_Nac_NotSet:
       logError("NoArgCommand not set");
       break;
+
     case NoArgCommands_Nac_GetBoardDetailsRequest:
       response->which_response = MyProjectResponse_getBoardDetailsResponse_tag;
       populateGetBoardDetailsResponse(&(response->response.getBoardDetailsResponse));
       break;
+    
     case NoArgCommands_Nac_LoadBoardConfiguration:
       response->which_response = MyProjectResponse_loadBoardConfigurationResponse_tag;
       onLoadBoardConfiguration(&(response->response.loadBoardConfigurationResponse));
       logError("Not implemented: LoadBoardConfiguration command");
       break;
-    case NoArgCommands_Nac_ResetFilesystem:
-      response->which_response = MyProjectResponse_resetFilesystemResponse_tag;
-      response->response.resetFilesystemResponse.success = resetFilesystem();
-      break;
+    
     case NoArgCommands_Nac_RestartDevice:
       // no response to be forthcoming
       ESP.restart();
       break;
+    
     default:
       logError("Unrecognized NoArgCommand command");
       logError(noArgCommand);
@@ -69,41 +96,41 @@ void onMyProjectCommand(MyProjectCommand * message, MyProjectResponse * response
     case MyProjectCommand_noArgCommand_tag:
       handleNoArgCommand(message->command.noArgCommand, response);
       break;
+
     case MyProjectCommand_helloQromaRequest_tag:
       response->which_response = MyProjectResponse_helloQromaResponse_tag;
-      response->response.helloQromaResponse = HelloQromaResponse_init_zero;
-      logError("Not implemented: HelloQromaRequest command");
-      // onSetUpdateConfiguration(&(message->command.setUpdateConfiguration),
-      //   &(response->response.setUpdateConfigurationResponse));
+      onHelloQromaRequest(&(message->command.helloQromaRequest), &(response->response.helloQromaResponse));
       break;
+
     case MyProjectCommand_mathRequest_tag:
       response->which_response = MyProjectResponse_mathResponse_tag;
-      response->response.mathResponse = MathResponse_init_zero;
-      logError("Not implemented: MathRequest command");
-      // onSetUpdateConfiguration(&(message->command.setUpdateConfiguration),
-      //   &(response->response.setUpdateConfigurationResponse));
       break;
+
     case MyProjectCommand_setUpdateConfiguration_tag:
       response->which_response = MyProjectResponse_setUpdateConfigurationResponse_tag;
       response->response.setUpdateConfigurationResponse = SetUpdateConfigurationResponse_init_zero;
       onSetUpdateConfiguration(&(message->command.setUpdateConfiguration),
         &(response->response.setUpdateConfigurationResponse));
       break;
+
     case MyProjectCommand_pingRequest_tag:
       response->which_response = MyProjectResponse_pingResponse_tag;
       response->response.pingResponse = PingResponse_init_zero;
       response->response.pingResponse.pingId = message->command.pingRequest.pingId;
       response->response.pingResponse.uptime = millis();
       break;
+
     case MyProjectCommand_getBoardDetailsRequest_tag:
       response->which_response = MyProjectResponse_getBoardDetailsResponse_tag;
       populateGetBoardDetailsResponse(&(response->response.getBoardDetailsResponse));
       break;
+
     case MyProjectCommand_setBoardLightColorRequest_tag:
       response->which_response = MyProjectResponse_setBoardLightColorResponse_tag;
       handleSetBoardLightColorRequest(&(message->command.setBoardLightColorRequest), 
         (&(response->response.setBoardLightColorResponse)));
       break;
+
     default:
       logError("Unrecognized MyProjectCommand command");
       logError(message->which_command);
