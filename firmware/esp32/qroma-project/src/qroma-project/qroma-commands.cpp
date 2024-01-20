@@ -6,7 +6,7 @@
 
 
 const char * QROMA_BOARDS_UPDATE_CONFIG_FILENAME = "/qroma-boards.config";
-FwUpdateConfiguration updateConfiguration = SetUpdateConfiguration_init_zero; 
+FwUpdateConfiguration updateConfiguration = FwUpdateConfiguration_init_zero; 
 
 
 void onSetUpdateConfiguration(SetUpdateConfiguration * message, SetUpdateConfigurationResponse * response) {
