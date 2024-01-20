@@ -27,9 +27,11 @@ void qromaProjectSetup()
     config->loggerConfig.logLevel = Qroma_LogLevel_LogLevel_Info;
   });
 
+  myQromaApp.startupQroma();
+
   updateConfiguration.updateIntervalInMs = 1000;
   // updateConfiguration.updateType = UpdateType_UpdateType_ProgressIndicator;
-//  updateConfiguration.updateType = UpdateType_UpdateType_Interval;
+  // updateConfiguration.updateType = UpdateType_UpdateType_Interval;
   updateConfiguration.updateType = UpdateType_UpdateType_None;
 
   if (!doesFileExist(QROMA_BOARDS_UPDATE_CONFIG_FILENAME)) {
@@ -38,8 +40,6 @@ void qromaProjectSetup()
       logError("ERROR SAVING INITIAL UPDATE CONFIG");
     }
   }
-
-  myQromaApp.startupQroma();
 }
 
 

@@ -14,12 +14,18 @@ int helloQromaCallCount = 0;
 
 void onSetUpdateConfiguration(SetUpdateConfiguration * message, SetUpdateConfigurationResponse * response) {
   if (!message->has_updateConfiguration) {
+    logError("NO UPDATE CONFIG");
     response->success = false;
   }
 
-  if (message->updateConfiguration.updateType < 10 || message->updateConfiguration.updateIntervalInMs > 60000) {
-    response->success = false;
-    return;
+  if (message->updateConfiguration.updateType == UpdateType_UpdateType_Interval ||
+      message->updateConfiguration.updateType == UpdateType_UpdateType_ProgressIndicator)
+  {
+    if (message->updateConfiguration.updateIntervalInMs < 10 || message->updateConfiguration.updateIntervalInMs > 60000) {
+      logError("UPDATE CONFIG ERR - INVALID INTERVAL PARAMETERS");
+      response->success = false;
+      return;
+    }
   }
 
   updateConfiguration.updateType = message->updateConfiguration.updateType;
@@ -34,8 +40,7 @@ void onSetUpdateConfiguration(SetUpdateConfiguration * message, SetUpdateConfigu
 
   } else {
     response->success = true;
-  }
-  
+  }  
 }
 
 
