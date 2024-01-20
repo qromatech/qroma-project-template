@@ -5,7 +5,6 @@
 #include "boards/qroma-boards.h"
 
 
-const char * QROMA_BOARDS_UPDATE_CONFIG_FILENAME = "/qroma-boards.config";
 FwUpdateConfiguration updateConfiguration = FwUpdateConfiguration_init_zero; 
 
 const char * HELLO_QROMA_RESPONSE_PREFIX = "Hello from Qroma, ";
@@ -27,6 +26,9 @@ void onSetUpdateConfiguration(SetUpdateConfiguration * message, SetUpdateConfigu
 
   if (message->saveConfiguration) {
     bool saved = savePbToPersistence(&updateConfiguration, QROMA_BOARDS_UPDATE_CONFIG_FILENAME, FwUpdateConfiguration_fields);
+    if (!saved) {
+      logError("ERROR SAVING UPDATE CONFIG");
+    }
     response->success = saved;
 
   } else {

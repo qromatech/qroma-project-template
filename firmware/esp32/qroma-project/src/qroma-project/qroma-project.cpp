@@ -32,6 +32,13 @@ void qromaProjectSetup()
 //  updateConfiguration.updateType = UpdateType_UpdateType_Interval;
   updateConfiguration.updateType = UpdateType_UpdateType_None;
 
+  if (!doesFileExist(QROMA_BOARDS_UPDATE_CONFIG_FILENAME)) {
+    bool saved = savePbToPersistence(&updateConfiguration, QROMA_BOARDS_UPDATE_CONFIG_FILENAME, FwUpdateConfiguration_fields);
+    if (!saved) {
+      logError("ERROR SAVING INITIAL UPDATE CONFIG");
+    }
+  }
+
   myQromaApp.startupQroma();
 }
 
