@@ -3,6 +3,7 @@
 #include "qroma-commands.h"
 #include "qroma/qroma.h"
 #include "boards/qroma-boards.h"
+#include "qroma-project.h"
 
 
 FwUpdateConfiguration updateConfiguration = FwUpdateConfiguration_init_zero; 
