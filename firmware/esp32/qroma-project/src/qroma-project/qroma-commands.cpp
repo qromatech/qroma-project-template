@@ -8,6 +8,9 @@
 const char * QROMA_BOARDS_UPDATE_CONFIG_FILENAME = "/qroma-boards.config";
 FwUpdateConfiguration updateConfiguration = FwUpdateConfiguration_init_zero; 
 
+const char * HELLO_QROMA_RESPONSE_PREFIX = "Hello from Qroma, ";
+int helloQromaCallCount = 0;
+
 
 void onSetUpdateConfiguration(SetUpdateConfiguration * message, SetUpdateConfigurationResponse * response) {
   if (!message->has_updateConfiguration) {
@@ -23,7 +26,7 @@ void onSetUpdateConfiguration(SetUpdateConfiguration * message, SetUpdateConfigu
   updateConfiguration.updateIntervalInMs = message->updateConfiguration.updateIntervalInMs;
 
   if (message->saveConfiguration) {
-    bool saved = savePbToPersistence(&updateConfiguration, QROMA_BOARDS_UPDATE_CONFIG_FILENAME, SetUpdateConfiguration_fields);
+    bool saved = savePbToPersistence(&updateConfiguration, QROMA_BOARDS_UPDATE_CONFIG_FILENAME, FwUpdateConfiguration_fields);
     response->success = saved;
 
   } else {
@@ -34,6 +37,9 @@ void onSetUpdateConfiguration(SetUpdateConfiguration * message, SetUpdateConfigu
 
 
 void onLoadBoardConfiguration(LoadBoardConfigurationResponse * response) {
+  bool loaded = loadPbFromPersistence<FwUpdateConfiguration>(
+    &updateConfiguration, QROMA_BOARDS_UPDATE_CONFIG_FILENAME, FwUpdateConfiguration_fields);
+
   response->has_loadedConfiguration = true;
 
   response->loadedConfiguration.updateIntervalInMs = updateConfiguration.updateIntervalInMs;
@@ -42,14 +48,37 @@ void onLoadBoardConfiguration(LoadBoardConfigurationResponse * response) {
 
 
 void onHelloQromaRequest(HelloQromaRequest * request, HelloQromaResponse * response) {
-  // logError("Not implemented: HelloQromaRequest command");
+  helloQromaCallCount++;
+
+  strncpy(response->response, HELLO_QROMA_RESPONSE_PREFIX, sizeof(response->response));
+  strncat(response->response, request->name, sizeof(response->response) - strlen(HELLO_QROMA_RESPONSE_PREFIX));
+  response->callCount = helloQromaCallCount;
+  response->nameLength = strnlen(request->name, size_t(response->response));
 }
 
 
 void onMathRequest(MathRequest * request, MathResponse * response) {
-  // response->response.mathResponse = MathResponse_init_zero;
-  logError("Not implemented: MathRequest command");
+  switch (request->op) {
+    case MathOperation_MathOp_Add:
+      response->which_response = MathResponse_addResult_tag;
+      response->response.addResult.result = request->a + request->b;
+      break;
 
+    case MathOperation_MathOp_Subtract:
+      response->which_response = MathResponse_subtractResult_tag;
+      response->response.subtractResult.result = request->a - request->b;
+      break;
+
+    case MathOperation_MathOp_Add_And_Subtract:
+      response->which_response = MathResponse_addAndSubtractResult_tag;
+      response->response.addAndSubtractResult.addResult = request->a + request->b;
+      response->response.addAndSubtractResult.subtractResult = request->a - request->b;
+      break;
+
+    case MathOperation_MathOp_NotSet:
+    default:
+      logError("Bad message: MathOp_NotSet");
+  }
 }
 
 
@@ -104,6 +133,7 @@ void onMyProjectCommand(MyProjectCommand * message, MyProjectResponse * response
 
     case MyProjectCommand_mathRequest_tag:
       response->which_response = MyProjectResponse_mathResponse_tag;
+      onMathRequest(&(message->command.mathRequest), &(response->response.mathResponse));
       break;
 
     case MyProjectCommand_setUpdateConfiguration_tag:

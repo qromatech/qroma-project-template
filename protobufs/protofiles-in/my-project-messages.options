@@ -1,6 +1,6 @@
 HelloQromaRequest.name  max_size:20  fixed_length:true
 
-HelloQromaResponse.response  max_size:20  fixed_length: true
+HelloQromaResponse.response  max_size:50  fixed_length: true
 
 ProgressIndicatorUpdateResponse.progressIndicator  max_size:50
 
