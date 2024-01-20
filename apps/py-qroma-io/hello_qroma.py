@@ -1,16 +1,20 @@
 import asyncio
-import time
 
 from py_qroma.qroma_comm.qcio_serial_b64 import QcioSerial
 from settings import QROMA_ACTIVE_COM_PORT
 
-from qroma_proto import hello_qroma_with_pb_response_pb2
+from qroma_proto import my_project_messages_pb2
+from py_qroma.qroma_comm_proto.qroma_comm_pb2 import QromaCommResponse
 
 
 def create_hello_qroma_message(name):
-    hello_qroma_message = hello_qroma_with_pb_response_pb2.HelloQromaRequest()
+    hello_qroma_message = my_project_messages_pb2.HelloQromaRequest()
     hello_qroma_message.name = name
-    msg_bytes = hello_qroma_message.SerializeToString()
+
+    my_project_command = my_project_messages_pb2.MyProjectCommand()
+    my_project_command.helloQromaRequest.CopyFrom(hello_qroma_message)
+
+    msg_bytes = my_project_command.SerializeToString()
     return msg_bytes
 
 
@@ -27,14 +31,18 @@ async def monitor(com_port: str):
     while i < 10:
         if i % 2 == 0:
             msg_bytes = create_hello_qroma_message(f"Dev World: {i}")
-            await qcio.send_bytes_base64_with_newline(msg_bytes)
+            await qcio.send_app_command_bytes(msg_bytes)
 
-        qhr = hello_qroma_with_pb_response_pb2.HelloQromaResponse()
-        message = await qcio.read_until_base64_newline_pb_parsed(qhr, 1.5)
-        
-        if message:
+        qhr = QromaCommResponse()
+        qc_response = await qcio.read_until_base64_newline_pb_parsed(qhr, 1.5)
+
+        if qc_response:
+            my_project_app_bytes = qc_response.appResponseBytes
+            my_project_response = my_project_messages_pb2.MyProjectResponse()
+            my_project_response.ParseFromString(my_project_app_bytes)
+
             print("MESSAGE RECEIVED")
-            print(message)
+            print(my_project_response)
         else:
             print("TIMED OUT")
 
