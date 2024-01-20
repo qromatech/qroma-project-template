@@ -16,7 +16,7 @@ function HomepageHeader() {
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div class="card">
           <div class="card__header">
-            <p className="qroma__tagline">qroma.dev for embedded project development and deployment. streamlined. simple.</p>
+            <p className="qroma__tagline">qroma.dev - embedded device development and deployment. streamlined. simple.</p>
           </div>
           <div class="card__header">
             <div class="row">
@@ -36,7 +36,7 @@ function HomepageHeader() {
                     className="button button--secondary button--lg"
                     to="https://docusaurus.io"
                     >
-                    Site built using Docusaurus
+                    Site built with Docusaurus
                   </Link>
                 </div>
               </div>

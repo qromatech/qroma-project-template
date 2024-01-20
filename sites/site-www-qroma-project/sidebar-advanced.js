@@ -7,10 +7,6 @@ export default {
       items: [
         {
           type: 'doc',
-          id: 'qroma-app-message-types',
-        },
-        {
-          type: 'doc',
           id: 'monitor-device',
         },
         {

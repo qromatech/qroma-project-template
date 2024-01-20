@@ -5,6 +5,8 @@
 #include "qroma-commands.h"
 
 
+#define QROMA_BOARDS_UPDATE_CONFIG_FILENAME "/qroma-boards.config"
+
 void qromaProjectSetup();
 
 void qromaProjectLoop();

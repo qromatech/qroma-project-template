@@ -45,12 +45,16 @@ const config = {
       path: 'src/get-started',
       routeBasePath: 'get-started',
       sidebarPath: require.resolve('./sidebar-get-started.js'),
+      sidebarCollapsed: false,
+      sidebarCollapsible: false,
     }],
     ['@docusaurus/plugin-content-docs', {
       id: 'advanced',
       path: 'src/advanced-io',
       routeBasePath: 'advanced-io',
       sidebarPath: require.resolve('./sidebar-advanced.js'),
+      sidebarCollapsed: false,
+      sidebarCollapsible: false,
     }],
   ],
 

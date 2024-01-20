@@ -10,7 +10,7 @@ AppCommandProcessor<
 
 QromaSerialCommApp myQromaApp;
 
-extern SetUpdateConfiguration updateConfiguration;
+extern FwUpdateConfiguration updateConfiguration;
 
 
 void qromaProjectSetup()
@@ -27,12 +27,19 @@ void qromaProjectSetup()
     config->loggerConfig.logLevel = Qroma_LogLevel_LogLevel_Info;
   });
 
+  myQromaApp.startupQroma();
+
   updateConfiguration.updateIntervalInMs = 1000;
   // updateConfiguration.updateType = UpdateType_UpdateType_ProgressIndicator;
-//  updateConfiguration.updateType = UpdateType_UpdateType_Interval;
+  // updateConfiguration.updateType = UpdateType_UpdateType_Interval;
   updateConfiguration.updateType = UpdateType_UpdateType_None;
 
-  myQromaApp.startupQroma();
+  if (!doesFileExist(QROMA_BOARDS_UPDATE_CONFIG_FILENAME)) {
+    bool saved = savePbToPersistence(&updateConfiguration, QROMA_BOARDS_UPDATE_CONFIG_FILENAME, FwUpdateConfiguration_fields);
+    if (!saved) {
+      logError("ERROR SAVING INITIAL UPDATE CONFIG");
+    }
+  }
 }
 
 

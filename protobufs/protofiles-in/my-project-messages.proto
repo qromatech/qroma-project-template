@@ -54,22 +54,19 @@ enum UpdateType {
   UpdateType_ProgressIndicator = 3;
 }
 
-message SetUpdateConfiguration {
+message FwUpdateConfiguration {
   UpdateType updateType = 1;
   uint32 updateIntervalInMs = 2;
 }
 
+message SetUpdateConfiguration {
+  FwUpdateConfiguration updateConfiguration = 1;
+  bool saveConfiguration = 2;
+}
+
 message SetUpdateConfigurationResponse {
   bool success = 1;
-}
-
-message SetUpdateProgressIndicator {
-  string indicatorChars = 1;
-}
-
-message SetUpdateProgressIndicatorResponse {
-  bool success = 1;
-  string statusMessage = 2;
+  FwUpdateConfiguration updateConfiguration = 2;
 }
 
 message UptimeUpdateResponse {
@@ -131,6 +128,13 @@ message SetBoardLightColorResponse {
 enum NoArgCommands {
   Nac_NotSet = 0;
   Nac_GetBoardDetailsRequest = 1;
+  Nac_LoadBoardConfiguration = 2;
+  Nac_RestartDevice          = 3;
+}
+
+message LoadBoardConfigurationResponse {
+  bool success = 1;
+  FwUpdateConfiguration loadedConfiguration = 2;
 }
 
 message InvalidCommandResponse {
@@ -144,10 +148,9 @@ message MyProjectCommand {
     HelloQromaRequest helloQromaRequest = 2;
     MathRequest mathRequest = 3;
     SetUpdateConfiguration setUpdateConfiguration = 4;
-    SetUpdateProgressIndicator setUpdateProgressIndicator = 5;
-    PingRequest pingRequest = 6;
-    GetBoardDetailsRequest getBoardDetailsRequest = 7;
-    SetBoardLightColorRequest setBoardLightColorRequest = 8;
+    PingRequest pingRequest = 5;
+    GetBoardDetailsRequest getBoardDetailsRequest = 6;
+    SetBoardLightColorRequest setBoardLightColorRequest = 7;
   }
 }
 
@@ -157,10 +160,10 @@ message MyProjectResponse {
     HelloQromaResponse helloQromaResponse = 2;
     MathResponse mathResponse = 3;
     SetUpdateConfigurationResponse setUpdateConfigurationResponse = 4;
-    SetUpdateProgressIndicatorResponse setUpdateProgressIndicatorResponse = 5;
-    PingResponse pingResponse = 6;
-    UpdateResponse updateResponse = 7;
-    SetBoardLightColorResponse setBoardLightColorResponse = 8;
-    GetBoardDetailsResponse getBoardDetailsResponse = 9;
+    PingResponse pingResponse = 5;
+    UpdateResponse updateResponse = 6;
+    SetBoardLightColorResponse setBoardLightColorResponse = 7;
+    GetBoardDetailsResponse getBoardDetailsResponse = 8;
+    LoadBoardConfigurationResponse loadBoardConfigurationResponse = 9;
   }
 }

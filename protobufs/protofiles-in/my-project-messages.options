@@ -1,12 +1,8 @@
 HelloQromaRequest.name  max_size:20  fixed_length:true
 
-HelloQromaResponse.response  max_size:20  fixed_length: true
+HelloQromaResponse.response  max_size:50  fixed_length: true
 
 ProgressIndicatorUpdateResponse.progressIndicator  max_size:50
-
-SetUpdateProgressIndicator.indicatorChars  max_size:5  fixed_length: true
-
-SetUpdateProgressIndicatorResponse.statusMessage  max_size:100  fixed_length: true
 
 MyProjectDetails.projectName  max_size:50  fixed_length: true
 
