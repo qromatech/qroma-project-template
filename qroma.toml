@@ -10,7 +10,7 @@ version = "0.1.0"
 [qroma.project.dirs]
 pb_root = "{% raw %}{{ qroma_project_dir }}{% endraw %}/protobufs"
 firmware_root = "{% raw %}{{ qroma_project_dir }}{% endraw %}/firmware/esp32-{{ qroma_project.project_id }}"
-app_root = "{% raw %}{{ qroma_project_dir }}{% endraw %}/apps/py-qroma-io"
+app_root = "{% raw %}{{ qroma_project_dir }}{% endraw %}/apps/py-{{ qroma_project.project_id }}"
 site_root = "{% raw %}{{ qroma_project_dir }}{% endraw %}/sites/site-www-{{ qroma_project.project_id }}"
 
 
