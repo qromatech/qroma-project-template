@@ -109,6 +109,11 @@ const config = {
             position: "right",
           },
           {
+            href: 'https://github.com/qroma-projects',
+            label: 'More qroma projects',
+            position: 'right',
+          },
+          {
             href: 'https://qroma.dev',
             label: 'qroma.dev',
             position: 'right',
