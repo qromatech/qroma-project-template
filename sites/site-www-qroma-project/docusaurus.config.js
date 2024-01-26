@@ -144,7 +144,7 @@ const config = {
             label: 'qroma.dev',
           },
         ],
-        copyright: `Copyright ${new Date().getFullYear()} {{ qroma_project.project_id }} - built with Docusaurus.`,
+        copyright: `Copyright ${new Date().getFullYear()} - {{ qroma_project.project_id }} - built with Docusaurus`,
       },
       prism: {
         theme: prismThemes.github,
