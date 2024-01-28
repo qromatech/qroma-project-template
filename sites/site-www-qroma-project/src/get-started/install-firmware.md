@@ -8,7 +8,7 @@ import { EspWebInstallButton } from '../react-qroma-lib';
 import { createManifestPath } from '../qroma-app/firmwareManifest';
 
 
-Installation of the firmware for qroma-boards is easy to do using a Chrome or Edge desktop
+Installation of the firmware for {{ qroma_project.project_id }} is easy to do using a Chrome or Edge desktop
 web browser. Use a USB cable to connect your ESP32 board to your PC, then find the ESP32 board 
 you are using below and click the button to install.
 
@@ -16,7 +16,7 @@ you are using below and click the button to install.
   <EspWebInstallButton
     label='Install on ESP32 Dev Board'
     instructionsText="Plug your ESP32 Dev board into your computer's USB port and click the button below to install firmware."
-    manifestPath={createManifestPath('qroma/versions/0.1.0/firmware/esp32dev/qroma-boards-manifest-esp32.json')}
+    manifestPath={createManifestPath('qroma/versions/0.1.0/firmware/esp32dev/{{ qroma_project.project_id }}-manifest-esp32.json')}
     />
 </div>
 
@@ -27,7 +27,7 @@ you are using below and click the button to install.
   <EspWebInstallButton
     label='Install on TinyPICO Board'
     instructionsText="Plug your TinyPICO board into your computer's USB port and click the button below to install firmware."
-    manifestPath={createManifestPath('qroma/versions/0.1.0/firmware/tinypico/qroma-boards-manifest-um_tinypico.json')}
+    manifestPath={createManifestPath('qroma/versions/0.1.0/firmware/tinypico/{{ qroma_project.project_id }}-manifest-um_tinypico.json')}
     />
 </div>
 
@@ -38,11 +38,11 @@ you are using below and click the button to install.
   <EspWebInstallButton
     label='Install on Adafruit QT Py Board'
     instructionsText="Plug your Adafruit QT Py board into your computer's USB port and click the button below to install firmware."
-    manifestPath={createManifestPath('qroma/versions/0.1.0/firmware/adafruit_qtpy_esp32c3/qroma-boards-manifest-adafruit_qtpy_esp32c3.json')}
+    manifestPath={createManifestPath('qroma/versions/0.1.0/firmware/adafruit_qtpy_esp32c3/{{ qroma_project.project_id }}-manifest-adafruit_qtpy_esp32c3.json')}
     />
 </div>
 
 <br/>
 <br/>
 <br/>
-<a href='https://esphome.github.io/esp-web-tools/'>ESP Web Tools</a> is used to install firmware via WebSerial. The installer button uses a <a href={createManifestPath('qroma/versions/0.1.0/firmware/esp32dev/qroma-boards-manifest-esp32.json')} target=''>manifest file </a> to know which files should be installed for its board.
+<a href='https://esphome.github.io/esp-web-tools/'>ESP Web Tools</a> is used to install firmware via WebSerial. The installer button uses a <a href={createManifestPath('qroma/versions/0.1.0/firmware/esp32dev/{{ qroma_project.project_id }}-manifest-esp32.json')} target=''>manifest file </a> to know which files should be installed for its board.
