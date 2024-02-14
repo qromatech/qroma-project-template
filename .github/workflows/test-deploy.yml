@@ -10,7 +10,7 @@ on:
 defaults:
   run:
     shell: bash
-    working-directory: ./sites/site-www-{{ qroma_project.project_id }}/
+    working-directory: ./sites/www-{{ qroma_project.project_id }}/
 
 jobs:
   test-deploy:
@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: 18
           cache: npm
-          cache-dependency-path: './sites/site-www-{{ qroma_project.project_id }}/package-lock.json'
+          cache-dependency-path: './sites/www-{{ qroma_project.project_id }}/package-lock.json'
 
       - name: Install dependencies
         run: npm install --frozen-lockfile

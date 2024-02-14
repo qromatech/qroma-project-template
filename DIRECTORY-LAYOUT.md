@@ -26,7 +26,7 @@ This is the directory for your embedded device applications with a directory nam
 
 ### sites
 
-This is the directory for your web site(s) with a directory name convention `site-$PROJECTNAME-$DOMAINNAME`. 
+This is the directory for your web site(s) with a directory name convention `www-$PROJECTNAME-$DOMAINNAME`. 
 
 Once we discovered WebSerial was a serious option for loading ESP32 binaries onto embedded devices and could be used for device IO via webpage, websites became a first class option since the tools for developing them are so pervasive, powerful, and easy to develop with. We start with a docusaurus site that includes placeholders for everything, but it can be tweaked/customized as desired.
 
