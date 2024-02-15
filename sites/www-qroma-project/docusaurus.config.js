@@ -109,14 +109,23 @@ const config = {
             position: "right",
           },
           {
-            href: 'https://github.com/qroma-projects',
-            label: 'More qroma projects',
+            type: 'dropdown',
+            label: 'Qroma Links',
             position: 'right',
-          },
-          {
-            href: 'https://qroma.dev',
-            label: 'qroma.dev',
-            position: 'right',
+            items: [
+              {
+                href: 'https://your-qroma-project-repo-host.com/user-or-org-id/qroma-project-id',
+                label: '{{ qroma_project.project_id }} source files',
+              },
+              {
+                href: 'https://qroma.dev',
+                label: 'qroma.dev',
+              },
+              {
+                href: 'https://qroma-projects.org',
+                label: 'Other qroma projects',
+              },
+            ],
           },
         ],
       },
