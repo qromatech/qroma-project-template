@@ -10,8 +10,10 @@ import { QromaCommFileExplorerComponent } from "../react-qroma-lib";
 
 
 <BrowserOnly>
-{() =>
-  <QromaCommFileExplorerComponent
-    />
-}
+{() => {
+  return (
+    <QromaCommFileExplorerComponent
+      />
+  )
+}}
 </BrowserOnly>

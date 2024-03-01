@@ -17,6 +17,10 @@ export default {
           type: 'doc',
           id: 'filesystem',
         },
+        {
+          type: 'doc',
+          id: 'upload-file',
+        },
       ],
     }
   ]
