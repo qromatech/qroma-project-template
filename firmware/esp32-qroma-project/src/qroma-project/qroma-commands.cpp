@@ -32,7 +32,7 @@ void onSetUpdateConfiguration(SetUpdateConfiguration * message, SetUpdateConfigu
   updateConfiguration.updateIntervalInMs = message->updateConfiguration.updateIntervalInMs;
 
   if (message->saveConfiguration) {
-    bool saved = savePbToPersistence(&updateConfiguration, QROMA_BOARDS_UPDATE_CONFIG_FILENAME, FwUpdateConfiguration_fields);
+    bool saved = savePbToPersistence(&updateConfiguration, QROMA_PROJECT_CONFIG_FILENAME, FwUpdateConfiguration_fields);
     if (!saved) {
       logError("ERROR SAVING UPDATE CONFIG");
     }
@@ -46,7 +46,7 @@ void onSetUpdateConfiguration(SetUpdateConfiguration * message, SetUpdateConfigu
 
 void onLoadBoardConfiguration(LoadBoardConfigurationResponse * response) {
   bool loaded = loadPbFromPersistence<FwUpdateConfiguration>(
-    &updateConfiguration, QROMA_BOARDS_UPDATE_CONFIG_FILENAME, FwUpdateConfiguration_fields);
+    &updateConfiguration, QROMA_PROJECT_CONFIG_FILENAME, FwUpdateConfiguration_fields);
 
   response->has_loadedConfiguration = true;
 

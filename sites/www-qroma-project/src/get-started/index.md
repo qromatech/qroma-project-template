@@ -2,7 +2,7 @@
 displayed_sidebar: getStartedSidebar
 ---
 
-# Get started with {{ qroma_project.project_id }}
+# Get Started with {{ qroma_project.project_id }}
 
 This is the intro page for readers to:
 * discover what your {{ qroma_project.project_id }} project _is_

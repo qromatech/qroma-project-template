@@ -5,7 +5,7 @@
 #include "qroma-commands.h"
 
 
-#define QROMA_BOARDS_UPDATE_CONFIG_FILENAME "/qroma-boards.config"
+#define QROMA_PROJECT_CONFIG_FILENAME "/{qroma_project.project_id}.config"
 
 void qromaProjectSetup();
 
