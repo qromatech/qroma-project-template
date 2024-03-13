@@ -4,6 +4,7 @@
 #include "qroma/qroma.h"
 
 
+
 AppCommandProcessor<
   MyProjectCommand, MyProjectCommand_fields,
   MyProjectResponse, MyProjectResponse_fields
@@ -46,8 +47,8 @@ void qromaProjectSetup()
       .logLevel = Qroma_LogLevel_LogLevel_Info,
     };
 
-    config->has_projectConfiguration = true;
-    config->projectConfiguration = {
+    config->has_managementConfig = true;
+    config->managementConfig = {
       .projectLoopDelayInMs = 100,
       .has_heartbeatConfiguration = true,
       .heartbeatConfiguration = {
@@ -80,47 +81,55 @@ void qromaProjectSetup()
 int updateCounter = 0;
 
 
-void sendUptimeUpdateResponse() {
-  MyProjectResponse myProjectResponse = MyProjectResponse_init_zero;
-  myProjectResponse.which_response = MyProjectResponse_updateResponse_tag;
-  myProjectResponse.response.updateResponse.which_update = UpdateResponse_uptimeUpdateResponse_tag;
-  myProjectResponse.response.updateResponse.update.uptimeUpdateResponse.uptime = millis();
+// void sendUptimeUpdateResponse() {
+//   MyProjectResponse myProjectResponse = MyProjectResponse_init_zero;
+//   myProjectResponse.which_response = MyProjectResponse_updateResponse_tag;
+//   myProjectResponse.response.updateResponse.which_update = UpdateResponse_uptimeUpdateResponse_tag;
+//   myProjectResponse.response.updateResponse.update.uptimeUpdateResponse.uptime = millis();
 
-  myQromaApp.sendQromaAppResponse<MyProjectResponse, MyProjectResponse_fields>(&myProjectResponse);
+//   myQromaApp.sendQromaAppResponse<MyProjectResponse, MyProjectResponse_fields>(&myProjectResponse);
 
-  logInfo("Update from {{ qroma_project.project_id }}");
-}
+//   logInfo("Update from qroma-core-test-1");
+// }
 
-void sendProgressUpdateResponse() {
-  MyProjectResponse myProjectResponse = MyProjectResponse_init_zero;
-  myProjectResponse.which_response = MyProjectResponse_updateResponse_tag;
-  myProjectResponse.response.updateResponse.which_update = UpdateResponse_progressIndicatorUpdateResponse_tag;
+// void sendProgressUpdateResponse() {
+//   MyProjectResponse myProjectResponse = MyProjectResponse_init_zero;
+//   myProjectResponse.which_response = MyProjectResponse_updateResponse_tag;
+//   myProjectResponse.response.updateResponse.which_update = UpdateResponse_progressIndicatorUpdateResponse_tag;
 
-  myProjectResponse.response.updateResponse.update.progressIndicatorUpdateResponse.progressIndicator[0] = '.';
-  int dotCount = updateCounter % 45;
-  for (int i=1; i < dotCount; i++) {
-    myProjectResponse.response.updateResponse.update.progressIndicatorUpdateResponse.progressIndicator[i] = '.';
-  }
+//   myProjectResponse.response.updateResponse.update.progressIndicatorUpdateResponse.progressIndicator[0] = '.';
+//   int dotCount = updateCounter % 45;
+//   for (int i=1; i < dotCount; i++) {
+//     myProjectResponse.response.updateResponse.update.progressIndicatorUpdateResponse.progressIndicator[i] = '.';
+//   }
 
-  myQromaApp.sendQromaAppResponse<MyProjectResponse, MyProjectResponse_fields>(&myProjectResponse);
+//   myQromaApp.sendQromaAppResponse<MyProjectResponse, MyProjectResponse_fields>(&myProjectResponse);
 
-  logInfo("sendProgressUpdateResponse() complete");
-}
+//   logInfo("sendProgressUpdateResponse() complete");
+// }
 
 
 void qromaProjectLoop()
 {
-  delay(updateConfiguration.updateIntervalInMs);
+  // delay(updateConfiguration.updateIntervalInMs);
+
+  QromaCoreManagementConfiguration * managementConfig = getQromaApp()->getCoreManagementConfigRef();
+  if (managementConfig != NULL) {
+    delay(managementConfig->projectLoopDelayInMs);
+  } else {
+    delay(100);
+  }
+
   updateCounter++;
 
-  switch (updateConfiguration.updateType) {
-    case UpdateType_UpdateType_Interval:
-      sendUptimeUpdateResponse();
-      break;
-    case UpdateType_UpdateType_ProgressIndicator:
-      sendProgressUpdateResponse();
-      break;
-    default:
-      break;
-  }
+  // switch (updateConfiguration.updateType) {
+  //   case UpdateType_UpdateType_Interval:
+  //     sendUptimeUpdateResponse();
+  //     break;
+  //   case UpdateType_UpdateType_ProgressIndicator:
+  //     sendProgressUpdateResponse();
+  //     break;
+  //   default:
+  //     break;
+  // }
 }

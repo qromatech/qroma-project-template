@@ -6,53 +6,53 @@
 #include "qroma-project.h"
 
 
-FwUpdateConfiguration updateConfiguration = FwUpdateConfiguration_init_zero; 
+// FwUpdateConfiguration updateConfiguration = FwUpdateConfiguration_init_zero; 
 
 const char * HELLO_QROMA_RESPONSE_PREFIX = "Hello from Qroma, ";
 int helloQromaCallCount = 0;
 
 
-void onSetUpdateConfiguration(SetUpdateConfiguration * message, SetUpdateConfigurationResponse * response) {
-  if (!message->has_updateConfiguration) {
-    logError("NO UPDATE CONFIG");
-    response->success = false;
-  }
+// void onSetUpdateConfiguration(SetUpdateConfiguration * message, SetUpdateConfigurationResponse * response) {
+//   if (!message->has_updateConfiguration) {
+//     logError("NO UPDATE CONFIG");
+//     response->success = false;
+//   }
 
-  if (message->updateConfiguration.updateType == UpdateType_UpdateType_Interval ||
-      message->updateConfiguration.updateType == UpdateType_UpdateType_ProgressIndicator)
-  {
-    if (message->updateConfiguration.updateIntervalInMs < 10 || message->updateConfiguration.updateIntervalInMs > 60000) {
-      logError("UPDATE CONFIG ERR - INVALID INTERVAL PARAMETERS");
-      response->success = false;
-      return;
-    }
-  }
+//   if (message->updateConfiguration.updateType == UpdateType_UpdateType_Interval ||
+//       message->updateConfiguration.updateType == UpdateType_UpdateType_ProgressIndicator)
+//   {
+//     if (message->updateConfiguration.updateIntervalInMs < 10 || message->updateConfiguration.updateIntervalInMs > 60000) {
+//       logError("UPDATE CONFIG ERR - INVALID INTERVAL PARAMETERS");
+//       response->success = false;
+//       return;
+//     }
+//   }
 
-  updateConfiguration.updateType = message->updateConfiguration.updateType;
-  updateConfiguration.updateIntervalInMs = message->updateConfiguration.updateIntervalInMs;
+//   updateConfiguration.updateType = message->updateConfiguration.updateType;
+//   updateConfiguration.updateIntervalInMs = message->updateConfiguration.updateIntervalInMs;
 
-  if (message->saveConfiguration) {
-    bool saved = savePbToPersistence(&updateConfiguration, QROMA_PROJECT_CONFIG_FILENAME, FwUpdateConfiguration_fields);
-    if (!saved) {
-      logError("ERROR SAVING UPDATE CONFIG");
-    }
-    response->success = saved;
+//   if (message->saveConfiguration) {
+//     bool saved = savePbToPersistence(&updateConfiguration, QROMA_PROJECT_CONFIG_FILENAME, FwUpdateConfiguration_fields);
+//     if (!saved) {
+//       logError("ERROR SAVING UPDATE CONFIG");
+//     }
+//     response->success = saved;
 
-  } else {
-    response->success = true;
-  }  
-}
+//   } else {
+//     response->success = true;
+//   }  
+// }
 
 
-void onLoadBoardConfiguration(LoadBoardConfigurationResponse * response) {
-  bool loaded = loadPbFromPersistence<FwUpdateConfiguration>(
-    &updateConfiguration, QROMA_PROJECT_CONFIG_FILENAME, FwUpdateConfiguration_fields);
+// void onLoadProjectConfiguration(LoadProjectConfigurationResponse * response) {
+//   bool loaded = loadPbFromPersistence<FwUpdateConfiguration>(
+//     &updateConfiguration, QROMA_PROJECT_CONFIG_FILENAME, FwUpdateConfiguration_fields);
 
-  response->has_loadedConfiguration = true;
+//   response->has_loadedConfiguration = true;
 
-  response->loadedConfiguration.updateIntervalInMs = updateConfiguration.updateIntervalInMs;
-  response->loadedConfiguration.updateType = updateConfiguration.updateType;
-}
+//   response->loadedConfiguration.updateIntervalInMs = updateConfiguration.updateIntervalInMs;
+//   response->loadedConfiguration.updateType = updateConfiguration.updateType;
+// }
 
 
 void onHelloQromaRequest(HelloQromaRequest * request, HelloQromaResponse * response) {
@@ -98,18 +98,19 @@ void handleNoArgCommand(NoArgCommands noArgCommand, MyProjectResponse * response
 
     case NoArgCommands_Nac_GetBoardDetailsRequest:
       response->which_response = MyProjectResponse_getBoardDetailsResponse_tag;
-      populateGetBoardDetailsResponse(&(response->response.getBoardDetailsResponse));
+      populateBoardDetails(&(response->response.getBoardDetailsResponse));
       break;
     
-    case NoArgCommands_Nac_LoadBoardConfiguration:
-      response->which_response = MyProjectResponse_loadBoardConfigurationResponse_tag;
-      onLoadBoardConfiguration(&(response->response.loadBoardConfigurationResponse));
-      logError("Not implemented: LoadBoardConfiguration command");
+    case NoArgCommands_Nac_GetProjectDetailsRequest:
+      logError("NOT HANDLED - NoArgCommands_Nac_GetProjectDetailsRequest");
       break;
-    
-    case NoArgCommands_Nac_RestartDevice:
-      // no response to be forthcoming
-      ESP.restart();
+
+    case NoArgCommands_Nac_SaveCurrentConfiguration:
+      logError("NOT HANDLED - NoArgCommands_Nac_SaveCurrentConfiguration");
+      break;
+
+    case NoArgCommands_Nac_LoadSavedConfiguration:
+      logError("NOT HANDLED - NoArgCommands_Nac_LoadSavedConfiguration");
       break;
     
     default:
@@ -144,23 +145,11 @@ void onMyProjectCommand(MyProjectCommand * message, MyProjectResponse * response
       onMathRequest(&(message->command.mathRequest), &(response->response.mathResponse));
       break;
 
-    case MyProjectCommand_setUpdateConfiguration_tag:
-      response->which_response = MyProjectResponse_setUpdateConfigurationResponse_tag;
-      response->response.setUpdateConfigurationResponse = SetUpdateConfigurationResponse_init_zero;
-      onSetUpdateConfiguration(&(message->command.setUpdateConfiguration),
-        &(response->response.setUpdateConfigurationResponse));
-      break;
-
     case MyProjectCommand_pingRequest_tag:
       response->which_response = MyProjectResponse_pingResponse_tag;
       response->response.pingResponse = PingResponse_init_zero;
       response->response.pingResponse.pingId = message->command.pingRequest.pingId;
       response->response.pingResponse.uptime = millis();
-      break;
-
-    case MyProjectCommand_getBoardDetailsRequest_tag:
-      response->which_response = MyProjectResponse_getBoardDetailsResponse_tag;
-      populateGetBoardDetailsResponse(&(response->response.getBoardDetailsResponse));
       break;
 
     case MyProjectCommand_setBoardLightColorRequest_tag:

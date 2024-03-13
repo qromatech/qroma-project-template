@@ -23,6 +23,7 @@ const char * getBoardName() {
   return "UM TinyPICO Firmware";
 }
 
+const bool getBoardHasRgb() { return true; }
 
 void handleSetBoardLightColorRequest(SetBoardLightColorRequest * request, SetBoardLightColorResponse * response) {
   response->success = true;
