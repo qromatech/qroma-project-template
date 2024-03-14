@@ -94,23 +94,28 @@ message PingResponse {
 }
 
 
+message BoardDetails {
+  string boardName = 1;
+  bool hasRgb = 2;
+}
+
+
 message MyProjectDetails {
   string projectName = 1;
 }
 
-message FirmwareDetails {
-  string version = 1;
-  string buildTime = 2;
-  string boardName = 3;
+
+message MyProjectConfiguration {
+  string userName = 1;
+  uint32 startupRed = 2;
+  uint32 startupGreen = 3;
+  uint32 startupBlue = 4;
 }
 
-message GetBoardDetailsRequest {
-  bool ignoreThis = 1;
-}
 
-message GetBoardDetailsResponse {
+message GetProjectDetailsResponse {
   MyProjectDetails projectDetails = 1;
-  FirmwareDetails firmwareDetails = 2;
+  MyProjectConfiguration currentConfiguration = 2;
 }
 
 
@@ -127,12 +132,13 @@ message SetBoardLightColorResponse {
 
 enum NoArgCommands {
   Nac_NotSet = 0;
-  Nac_GetBoardDetailsRequest = 1;
-  Nac_LoadBoardConfiguration = 2;
-  Nac_RestartDevice          = 3;
+  Nac_GetProjectDetailsRequest = 1;
+  Nac_GetBoardDetailsRequest = 2;
+  Nac_SaveCurrentConfiguration = 3;
+  Nac_LoadSavedConfiguration = 4;
 }
 
-message LoadBoardConfigurationResponse {
+message LoadProjectConfigurationResponse {
   bool success = 1;
   FwUpdateConfiguration loadedConfiguration = 2;
 }
@@ -147,10 +153,8 @@ message MyProjectCommand {
     NoArgCommands noArgCommand = 1;
     HelloQromaRequest helloQromaRequest = 2;
     MathRequest mathRequest = 3;
-    SetUpdateConfiguration setUpdateConfiguration = 4;
-    PingRequest pingRequest = 5;
-    GetBoardDetailsRequest getBoardDetailsRequest = 6;
-    SetBoardLightColorRequest setBoardLightColorRequest = 7;
+    PingRequest pingRequest = 4;
+    SetBoardLightColorRequest setBoardLightColorRequest = 5;
   }
 }
 
@@ -161,9 +165,9 @@ message MyProjectResponse {
     MathResponse mathResponse = 3;
     SetUpdateConfigurationResponse setUpdateConfigurationResponse = 4;
     PingResponse pingResponse = 5;
-    UpdateResponse updateResponse = 6;
-    SetBoardLightColorResponse setBoardLightColorResponse = 7;
-    GetBoardDetailsResponse getBoardDetailsResponse = 8;
-    LoadBoardConfigurationResponse loadBoardConfigurationResponse = 9;
+    SetBoardLightColorResponse setBoardLightColorResponse = 6;
+    GetProjectDetailsResponse getProjectDetailsResponse = 7;
+    BoardDetails getBoardDetailsResponse = 8;
+    LoadProjectConfigurationResponse loadBoardConfigurationResponse = 9;
   }
 }
