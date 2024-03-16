@@ -47,43 +47,6 @@ message MathResponse {
 }
 
 
-enum UpdateType {
-  UpdateType_NotSet = 0;
-  UpdateType_None = 1;
-  UpdateType_Interval = 2;
-  UpdateType_ProgressIndicator = 3;
-}
-
-message FwUpdateConfiguration {
-  UpdateType updateType = 1;
-  uint32 updateIntervalInMs = 2;
-}
-
-message SetUpdateConfiguration {
-  FwUpdateConfiguration updateConfiguration = 1;
-  bool saveConfiguration = 2;
-}
-
-message SetUpdateConfigurationResponse {
-  bool success = 1;
-  FwUpdateConfiguration updateConfiguration = 2;
-}
-
-message UptimeUpdateResponse {
-  uint32 uptime = 1;
-}
-
-message ProgressIndicatorUpdateResponse {
-  string progressIndicator = 1;
-}
-
-message UpdateResponse {
-  oneof update {
-    UptimeUpdateResponse uptimeUpdateResponse = 1;
-    ProgressIndicatorUpdateResponse progressIndicatorUpdateResponse = 2;
-  }
-}
-
 message PingRequest {
   uint32 pingId = 1;
 }
