@@ -47,16 +47,6 @@ message MathResponse {
 }
 
 
-message PingRequest {
-  uint32 pingId = 1;
-}
-
-message PingResponse {
-  uint32 pingId = 1;
-  uint32 uptime = 2;
-}
-
-
 message BoardDetails {
   string boardName = 1;
   bool hasRgb = 2;
@@ -116,8 +106,7 @@ message MyProjectCommand {
     NoArgCommands noArgCommand = 1;
     HelloQromaRequest helloQromaRequest = 2;
     MathRequest mathRequest = 3;
-    PingRequest pingRequest = 4;
-    SetBoardLightColorRequest setBoardLightColorRequest = 5;
+    SetBoardLightColorRequest setBoardLightColorRequest = 4;
   }
 }
 
@@ -127,10 +116,9 @@ message MyProjectResponse {
     HelloQromaResponse helloQromaResponse = 2;
     MathResponse mathResponse = 3;
     SetUpdateConfigurationResponse setUpdateConfigurationResponse = 4;
-    PingResponse pingResponse = 5;
-    SetBoardLightColorResponse setBoardLightColorResponse = 6;
-    GetProjectDetailsResponse getProjectDetailsResponse = 7;
-    BoardDetails getBoardDetailsResponse = 8;
-    LoadProjectConfigurationResponse loadBoardConfigurationResponse = 9;
+    SetBoardLightColorResponse setBoardLightColorResponse = 5;
+    GetProjectDetailsResponse getProjectDetailsResponse = 6;
+    BoardDetails getBoardDetailsResponse = 7;
+    LoadProjectConfigurationResponse loadBoardConfigurationResponse = 8;
   }
 }
