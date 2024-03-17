@@ -2,8 +2,6 @@ HelloQromaRequest.name  max_size:20  fixed_length:true
 
 HelloQromaResponse.response  max_size:50  fixed_length: true
 
-ProgressIndicatorUpdateResponse.progressIndicator  max_size:50
-
 BoardDetails.boardName  max_size:30  fixed_length: true
 
 SetBoardLightColorResponse.message  max_size:50  fixed_length: false

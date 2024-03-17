@@ -6,53 +6,8 @@
 #include "qroma-project.h"
 
 
-// FwUpdateConfiguration updateConfiguration = FwUpdateConfiguration_init_zero; 
-
 const char * HELLO_QROMA_RESPONSE_PREFIX = "Hello from Qroma, ";
 int helloQromaCallCount = 0;
-
-
-// void onSetUpdateConfiguration(SetUpdateConfiguration * message, SetUpdateConfigurationResponse * response) {
-//   if (!message->has_updateConfiguration) {
-//     logError("NO UPDATE CONFIG");
-//     response->success = false;
-//   }
-
-//   if (message->updateConfiguration.updateType == UpdateType_UpdateType_Interval ||
-//       message->updateConfiguration.updateType == UpdateType_UpdateType_ProgressIndicator)
-//   {
-//     if (message->updateConfiguration.updateIntervalInMs < 10 || message->updateConfiguration.updateIntervalInMs > 60000) {
-//       logError("UPDATE CONFIG ERR - INVALID INTERVAL PARAMETERS");
-//       response->success = false;
-//       return;
-//     }
-//   }
-
-//   updateConfiguration.updateType = message->updateConfiguration.updateType;
-//   updateConfiguration.updateIntervalInMs = message->updateConfiguration.updateIntervalInMs;
-
-//   if (message->saveConfiguration) {
-//     bool saved = savePbToPersistence(&updateConfiguration, QROMA_PROJECT_CONFIG_FILENAME, FwUpdateConfiguration_fields);
-//     if (!saved) {
-//       logError("ERROR SAVING UPDATE CONFIG");
-//     }
-//     response->success = saved;
-
-//   } else {
-//     response->success = true;
-//   }  
-// }
-
-
-// void onLoadProjectConfiguration(LoadProjectConfigurationResponse * response) {
-//   bool loaded = loadPbFromPersistence<FwUpdateConfiguration>(
-//     &updateConfiguration, QROMA_PROJECT_CONFIG_FILENAME, FwUpdateConfiguration_fields);
-
-//   response->has_loadedConfiguration = true;
-
-//   response->loadedConfiguration.updateIntervalInMs = updateConfiguration.updateIntervalInMs;
-//   response->loadedConfiguration.updateType = updateConfiguration.updateType;
-// }
 
 
 void onHelloQromaRequest(HelloQromaRequest * request, HelloQromaResponse * response) {
@@ -143,13 +98,6 @@ void onMyProjectCommand(MyProjectCommand * message, MyProjectResponse * response
     case MyProjectCommand_mathRequest_tag:
       response->which_response = MyProjectResponse_mathResponse_tag;
       onMathRequest(&(message->command.mathRequest), &(response->response.mathResponse));
-      break;
-
-    case MyProjectCommand_pingRequest_tag:
-      response->which_response = MyProjectResponse_pingResponse_tag;
-      response->response.pingResponse = PingResponse_init_zero;
-      response->response.pingResponse.pingId = message->command.pingRequest.pingId;
-      response->response.pingResponse.uptime = millis();
       break;
 
     case MyProjectCommand_setBoardLightColorRequest_tag:

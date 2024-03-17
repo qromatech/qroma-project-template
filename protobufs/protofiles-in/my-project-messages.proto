@@ -91,11 +91,6 @@ enum NoArgCommands {
   Nac_LoadSavedConfiguration = 4;
 }
 
-message LoadProjectConfigurationResponse {
-  bool success = 1;
-  FwUpdateConfiguration loadedConfiguration = 2;
-}
-
 message InvalidCommandResponse {
   string message = 1;
 }
@@ -107,6 +102,7 @@ message MyProjectCommand {
     HelloQromaRequest helloQromaRequest = 2;
     MathRequest mathRequest = 3;
     SetBoardLightColorRequest setBoardLightColorRequest = 4;
+    MyProjectConfiguration setMyProjectConfigurationRequest = 5;
   }
 }
 
@@ -115,10 +111,8 @@ message MyProjectResponse {
     InvalidCommandResponse invalidCommandResponse = 1;
     HelloQromaResponse helloQromaResponse = 2;
     MathResponse mathResponse = 3;
-    SetUpdateConfigurationResponse setUpdateConfigurationResponse = 4;
+    BoardDetails getBoardDetailsResponse = 4;
     SetBoardLightColorResponse setBoardLightColorResponse = 5;
     GetProjectDetailsResponse getProjectDetailsResponse = 6;
-    BoardDetails getBoardDetailsResponse = 7;
-    LoadProjectConfigurationResponse loadBoardConfigurationResponse = 8;
   }
 }
