@@ -12,6 +12,8 @@ const char * getBoardName() {
   return "ESP 32 Dev Board Firmware";
 }
 
+const bool getBoardHasRgb() { return false; }
+
 void handleSetBoardLightColorRequest(SetBoardLightColorRequest * request, SetBoardLightColorResponse * response) {
   response->success = false;
   strncpy(response->message, "", sizeof(response->message));

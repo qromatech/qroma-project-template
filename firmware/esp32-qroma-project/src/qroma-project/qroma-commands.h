@@ -1,5 +1,5 @@
-#ifndef QROMA_COMMANDS_H
-#define QROMA_COMMANDS_H
+#ifndef QROMA_PROJECT_COMMANDS_H
+#define QROMA_PROJECT_COMMANDS_H
 
 #include <qroma-proto/my-project-messages.pb.h>
 

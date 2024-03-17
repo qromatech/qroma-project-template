@@ -1,4 +1,4 @@
----
+<!-- ---
 title: Qroma Lights Config
 ---
 
@@ -15,4 +15,4 @@ import { QromaIoShowQromaFileAsMessageTypeComponent } from "../../react-qroma-li
     filePath="/comm-config.qroma"
     />
 }
-</BrowserOnly>
+</BrowserOnly> -->

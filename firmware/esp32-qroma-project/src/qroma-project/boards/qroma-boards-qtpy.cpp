@@ -31,6 +31,7 @@ const char * getBoardName() {
   return "Adafruit QT Py Firmware";
 }
 
+const bool getBoardHasRgb() { return true; }
 
 void handleSetBoardLightColorRequest(SetBoardLightColorRequest * request, SetBoardLightColorResponse * response) {
   response->success = true;

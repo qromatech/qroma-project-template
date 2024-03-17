@@ -5,8 +5,9 @@
 
 extern void onInit();
 extern const char * getBoardName();
+extern const bool getBoardHasRgb();
 
-void populateGetBoardDetailsResponse(GetBoardDetailsResponse * config);
+void populateBoardDetails(BoardDetails * details);
 extern void handleSetBoardLightColorRequest(SetBoardLightColorRequest * request, SetBoardLightColorResponse * response);
 
 
