@@ -34,6 +34,7 @@ compilers = [
   "python",
   "typescript",
   "dart",
+  "rust",
 ]
 
 [[qroma.project.stages.sw.protobuf.sources]]
