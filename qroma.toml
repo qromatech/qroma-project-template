@@ -34,6 +34,7 @@ compilers = [
   "python",
   "typescript",
   "dart",
+  "rust",
 ]
 
 [[qroma.project.stages.sw.protobuf.sources]]
@@ -46,6 +47,7 @@ nanopb.dirs = ["{% raw %}{{ qroma.project_dirs.firmware_root }}{% endraw %}/src/
 python.dirs = ["{% raw %}{{ qroma.project_dirs.app_root }}{% endraw %}/qroma_proto", ]
 typescript.dirs = ["{% raw %}{{ qroma.project_dirs.site_root }}{% endraw %}/src/qroma-proto", ]
 dart.dirs = []
+rust.dirs = []
 
 
 [qroma.project.stages.sw.firmware]
