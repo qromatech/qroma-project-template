@@ -14,14 +14,14 @@ function HomepageHeader() {
       <div className="container">
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div class="card">
-          <div class="card__header">
+        <div className="card">
+          <div className="card__header">
             <p className="qroma__tagline">qroma.dev - embedded device development and deployment. streamlined. simple.</p>
           </div>
-          <div class="card__header">
-            <div class="row">
-              <div class="col">
-                <div class="col-demo">
+          <div className="card__header">
+            <div className="row">
+              <div className="col">
+                <div className="col-demo">
                   <Link
                     className="button button--secondary button--lg"
                     to="https://qroma.dev"
@@ -30,8 +30,8 @@ function HomepageHeader() {
                   </Link>                
                 </div>
               </div>
-              <div class="col">
-                <div class="col-demo">
+              <div className="col">
+                <div className="col-demo">
                   <Link
                     className="button button--secondary button--lg"
                     to="https://docusaurus.io"
